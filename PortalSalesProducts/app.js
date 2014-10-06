@@ -30,7 +30,6 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 mongoose.connect('mongodb://localhost/Ecommerce');
 
-
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
