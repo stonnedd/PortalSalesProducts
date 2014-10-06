@@ -1,0 +1,114 @@
+﻿@html.extend("/shared/layoutAccount", function(model){
+    @html.block("scripts", function(model){
+    })
+    @html.block("body", function(model){
+<div ng-controller="upsertController" ng-cloak class="panel-login" style="width: 1000px !important;">
+    <form class=" form-horizontal" id="upsertForm" role="form" novalidate="novalidate">
+        <div class="panel panel-default element-center">
+            <div class="panel-header">
+                <br />
+                <h2 class="modal-title element-center">Categoría</h2>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="panel panel-default panel-primary">
+                            <div class="panel-heading">
+                                <span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;Información de la categoría
+                            </div>
+                            <div class="panel-body">
+                                <input type="hidden" ng-model="m.id" ng-update-hidden ng-init="m.id='@model.id'" id="itemId" name="itemId" />
+                                <div class="row">
+                                    <br />
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Nombre:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <input class="form-control" data-val="true"
+                                                       data-val-length="No puede exceder de 20 caracteres"
+                                                       data-val-length-max="20" data-val-length-min="1"
+                                                       data-val-required="Nombre es un campo requerido"
+                                                       id="catName" name="catName"
+                                                       type="text" ng-model="m.name"
+                                                       ng-init="m.name = '@model.name'" />
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="catName"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Posición:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <input class="form-control" data-val="true"
+                                                       data-val-required="Posición un campo requerido"
+                                                       id="position" name="position"
+                                                       type="number" ng-model="m.position"
+                                                       ng-init="m.position = @(model.position == undefined ? '\'\'' : model.position)" />
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="position"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <br />
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Descripción:
+                                            </div>
+                                            <div class="col-xs-8 element-left">
+                                                <textarea class="form-control" data-val="true"
+                                                          cols="20" rows="5"
+                                                          data-val-length-max="1000" data-val-length-min="1"
+                                                          data-val-required="Descripción es un campo requerido"
+                                                          id="description" name="description"
+                                                          ng-model="m.description"
+                                                          ng-init="m.description = '@model.description'" >
+                                                </textarea>
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="description"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div ng-show="msgError" class="alert alert-danger element-center error-font">
+                            {{msgError}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default btn-sm" ng-disabled="working==true" ng-click="returnPage()" ng-init="urlToReturn='/management/categories'">Regresar</button>
+                <button class="btn btn-default btn-primary btn-sm" ng-disabled="working==true" ng-click="save('#upsertForm', '/management/categories/doUpsert')">Guardar</button>
+            </div>
+        </div>
+    </form>
+    <div class="blocker" ng-show="working">
+        <div>
+            Guardando...<img src="/images/ajax_loader.gif" alt="" />
+        </div>
+    </div>
+</div>
+
+    })
+})

@@ -1,0 +1,287 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>ExpressApp7</Name>
+    <RootNamespace>ExpressApp7</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>83aac9f6-1094-40fc-8ce9-2ca0fe8ccbac</ProjectGuid>
+    <ProjectHome>.</ProjectHome>
+    <StartupFile>app.js</StartupFile>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{349c5851-65df-11da-9384-00065b846f21};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <ProjectView>ShowAllFiles</ProjectView>
+    <NodejsPort>1337</NodejsPort>
+    <StartWebBrowser>true</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="app.js" />
+    <Compile Include="controllers\account\authController.js" />
+    <Compile Include="controllers\account\index.js" />
+    <Compile Include="controllers\ecommerce\homeController.js" />
+    <Compile Include="controllers\ecommerce\index.js" />
+    <Compile Include=".bowerrc" />
+    <Compile Include="controllers\management\categoriesController.js" />
+    <Compile Include="controllers\management\mainController.js" />
+    <Compile Include="controllers\management\index.js" />
+    <Compile Include="Gruntfile.js" />
+    <Compile Include="infrastructure\jqgrid\jqgridUtil.js" />
+    <Compile Include="models\account\userModel.js" />
+    <Compile Include="models\ecommerce\brandModel.js" />
+    <Compile Include="models\ecommerce\categoryModel.js" />
+    <Compile Include="models\ecommerce\productModel.js" />
+    <Compile Include="models\ecommerce\subCategoryModel.js" />
+    <Compile Include="public\js\ace\ace-elements.min.js" />
+    <Compile Include="public\js\ace\ace.min.js" />
+    <Compile Include="public\helpers\jquery.fancybox-buttons.js" />
+    <Compile Include="public\helpers\jquery.fancybox-media.js" />
+    <Compile Include="public\helpers\jquery.fancybox-thumbs.js" />
+    <Compile Include="public\js\app\account\loginCtrl.js" />
+    <Compile Include="public\js\app\ecommerce\mainPageCtrl.js" />
+    <Compile Include="public\js\app\shared\accountApp.js" />
+    <Compile Include="public\js\app\shared\ecommerceApp.js" />
+    <Compile Include="public\js\app\shared\hiddenDrct.js" />
+    <Compile Include="public\js\app\shared\menuCtrl.js" />
+    <Compile Include="public\js\app\shared\sharedSvc.js" />
+    <Compile Include="public\js\app\shared\upsertCtrl.js" />
+    <Compile Include="public\js\bootstrap.js" />
+    <Compile Include="public\js\bootstrap.min.js" />
+    <Compile Include="public\js\common.js" />
+    <Compile Include="public\js\gmap3.js" />
+    <Compile Include="public\js\html5shiv.js" />
+    <None Include="public\js\jquery-1.10.2.intellisense.js" />
+    <Compile Include="public\js\jqgrid\i18n\grid.locale-es.js" />
+    <Compile Include="public\js\jqgrid\jquery.jqGrid.min.js" />
+    <Compile Include="public\js\jquery-1.10.2.js" />
+    <Compile Include="public\js\jquery-1.10.2.min.js" />
+    <Compile Include="public\js\jquery.fancybox.js" />
+    <Compile Include="public\js\jquery.js" />
+    <Compile Include="public\js\jquery.mousewheel-3.0.6.pack.js" />
+    <None Include="public\js\jquery.validate-vsdoc.js" />
+    <Compile Include="public\js\jquery.validate.js" />
+    <Compile Include="public\js\jquery.validate.min.js" />
+    <Compile Include="public\js\jquery.validate.unobtrusive.js" />
+    <Compile Include="public\js\jquery.validate.unobtrusive.min.js" />
+    <Compile Include="public\js\modernizr-2.6.2.js" />
+    <Compile Include="public\js\respond.min.js" />
+    <Compile Include="public\js\script.js" />
+    <Compile Include="schemas\account\userSchema.js" />
+    <Compile Include="schemas\ecommerce\brandSchema.js" />
+    <Compile Include="schemas\ecommerce\categorySchema.js" />
+    <Compile Include="schemas\ecommerce\productSchema.js" />
+    <Compile Include="schemas\ecommerce\subCategorySchema.js" />
+    <Compile Include="services\account\auth.js" />
+    <Compile Include="services\account\hasher.js" />
+    <Compile Include="services\database\databaseInitService.js" />
+    <Compile Include="services\database\index.js" />
+    <Compile Include="services\ecommerce\salesService.js" />
+    <Content Include="package.json" />
+    <Content Include="public\css\ace\ace-rtl.min.css" />
+    <Content Include="public\css\ace\ace-skins.min.css" />
+    <Content Include="public\css\ace\ace.min.css" />
+    <Content Include="public\css\jqgrid\ui.jqgrid.css" />
+    <Content Include="public\css\jquery-ui-1.10.3.full.min.css" />
+    <Content Include="public\css\style.css" />
+    <Content Include="public\fonts\cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff" />
+    <Content Include="public\fonts\DroidSans-webfont.eot" />
+    <Content Include="public\fonts\DroidSans-webfont.svg" />
+    <Content Include="public\fonts\DroidSans-webfont.ttf" />
+    <Content Include="public\fonts\DroidSans-webfont.woff" />
+    <Content Include="public\fonts\DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff" />
+    <Content Include="public\fonts\fontawesome-webfont.eot" />
+    <Content Include="public\fonts\fontawesome-webfont.svg" />
+    <Content Include="public\fonts\fontawesome-webfont.ttf" />
+    <Content Include="public\fonts\fontawesome-webfont.woff" />
+    <Content Include="public\fonts\FontAwesome.otf" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="public\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="public\fonts\OpenSans-CondLight-webfont.eot" />
+    <Content Include="public\fonts\OpenSans-CondLight-webfont.svg" />
+    <Content Include="public\fonts\OpenSans-CondLight-webfont.ttf" />
+    <Content Include="public\fonts\OpenSans-CondLight-webfont.woff" />
+    <Content Include="public\fonts\sourcesanspro-regular-webfont.eot" />
+    <Content Include="public\fonts\sourcesanspro-regular-webfont.svg" />
+    <Content Include="public\fonts\sourcesanspro-regular-webfont.ttf" />
+    <Content Include="public\fonts\sourcesanspro-regular-webfont.woff" />
+    <Content Include="public\helpers\fancybox_buttons.png" />
+    <Content Include="public\helpers\jquery.fancybox-buttons.css" />
+    <Content Include="public\helpers\jquery.fancybox-thumbs.css" />
+    <Content Include="public\images\ajax_loader.gif" />
+    <Content Include="public\images\background.jpg" />
+    <Content Include="public\images\background.pdf" />
+    <Content Include="public\images\background2.png" />
+    <Content Include="public\images\background3.jpg" />
+    <Content Include="public\images\banner_slider-1.jpg" />
+    <Content Include="public\images\banner_slider-1x.jpg" />
+    <Content Include="public\images\banner_slider-2.jpg" />
+    <Content Include="public\images\banner_slider-2x.jpg" />
+    <Content Include="public\images\banner_slider-3.jpg" />
+    <Content Include="public\images\banner_slider-3x.jpg" />
+    <Content Include="public\images\logoVandalos.png" />
+    <Content Include="public\images\logoVandalos1a.jpg" />
+    <Content Include="public\images\products\DarkStarWheel.jpg" />
+    <Content Include="public\images\products\GrindKingMid.jpg" />
+    <Content Include="public\images\products\Osiris-NYC.jpg" />
+    <Content Include="public\images\products\osirisg3v.jpg" />
+    <Content Include="public\images\products\tonyHawkDeck.jpg" />
+    <Content Include="public\images\products\VolcomGrimm.jpg" />
+    <Content Include="public\images\products\volcomHoodie.jpg" />
+    <Content Include="public\images\shoe.jpg" />
+    <Content Include="public\images\subCategoriasRopa\Calcetas.jpg" />
+    <Content Include="public\images\subCategoriasRopa\Gorras.jpg" />
+    <Content Include="public\images\subCategoriasRopa\Pantalones.jpg" />
+    <Content Include="public\images\subCategoriasRopa\Playeras.jpg" />
+    <Content Include="public\images\subCategoriasRopa\Shorts.jpg" />
+    <Content Include="public\images\subCategoriasRopa\Sudaderas.jpg" />
+    <Content Include="public\images\subCategoriasRopa\TrajesDeBaño.jpg" />
+    <Content Include="public\images\subCategoriasRopa\Vestidos.jpg" />
+    <Content Include="public\images\subCategoriesSkate\Bearings.jpg" />
+    <Content Include="public\images\subCategoriesSkate\Decks.jpg" />
+    <Content Include="public\images\subCategoriesSkate\fullSkate.jpg" />
+    <Content Include="public\images\subCategoriesSkate\gomas.jpg" />
+    <Content Include="public\images\subCategoriesSkate\hardware.jpg" />
+    <Content Include="public\images\subCategoriesSkate\protections.jpg" />
+    <Content Include="public\images\subCategoriesSkate\tools.jpg" />
+    <Content Include="public\images\subCategoriesSkate\trucks.jpg" />
+    <Content Include="public\images\subCategoriesSkate\waxes.jpg" />
+    <Content Include="public\images\subCategoriesSkate\wheels.jpg" />
+    <Content Include="public\images\titleBackground.jpg" />
+    <Content Include="public\images\titleBackground1.jpg" />
+    <Content Include="public\images\titleBackground2.jpg" />
+    <Content Include="public\images\titleBackground3.jpg" />
+    <Content Include="public\images\titleBackground4.jpg" />
+    <Content Include="public\css\animate.css" />
+    <Content Include="public\css\blank.gif" />
+    <Content Include="public\css\blurMenu.css" />
+    <Content Include="public\css\bootstrap-theme.css" />
+    <Content Include="public\css\bootstrap-theme.css.map" />
+    <Content Include="public\css\bootstrap-theme.min.css" />
+    <Content Include="public\css\bootstrap.css" />
+    <Content Include="public\css\bootstrap.css.map" />
+    <Content Include="public\css\bootstrap.min.css" />
+    <Content Include="public\css\fancybox_loading%402x.gif" />
+    <Content Include="public\css\fancybox_loading.gif" />
+    <Content Include="public\css\fancybox_overlay.png" />
+    <Content Include="public\css\fancybox_sprite%402x.png" />
+    <Content Include="public\css\fancybox_sprite.png" />
+    <Content Include="public\css\font-awesome.css" />
+    <Content Include="public\css\jquery.fancybox.css" />
+    <Content Include="public\css\location.png" />
+    <Content Include="public\css\pattern.png" />
+    <Content Include="public\css\picSize.css" />
+    <Content Include="public\css\responsive.css" />
+    <Content Include="public\css\ace\font-awesome.min.css" />
+    <Content Include="public\js\blank.gif" />
+    <Content Include="public\js\fancybox_loading%402x.gif" />
+    <Content Include="public\js\fancybox_loading.gif" />
+    <Content Include="public\js\fancybox_overlay.png" />
+    <Content Include="public\js\fancybox_sprite%402x.png" />
+    <Content Include="public\js\fancybox_sprite.png" />
+    <Content Include="public\js\jquery-1.10.2.min.map" />
+    <Content Include="README.md" />
+    <Content Include="views\account\login.vash" />
+    <Content Include="views\ecommerce\index.vash" />
+    <Content Include="views\management\categories.vash" />
+    <Content Include="views\management\index.vash" />
+    <Content Include="views\management\categoriesUpsert.vash" />
+    <Content Include="views\shared\layoutAccount.vash" />
+    <Content Include="views\shared\layout.vash" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="controllers\" />
+    <Folder Include="controllers\ecommerce\" />
+    <Folder Include="controllers\account\" />
+    <Folder Include="controllers\management\" />
+    <Folder Include="infrastructure\jqgrid\" />
+    <Folder Include="models\" />
+    <Folder Include="models\ecommerce\" />
+    <Folder Include="models\account\" />
+    <Folder Include="infrastructure\" />
+    <Folder Include="public\css\jqgrid\" />
+    <Folder Include="public\css\ace\" />
+    <Folder Include="public\js\ace\" />
+    <Folder Include="public\js\app\" />
+    <Folder Include="public\js\app\ecommerce\" />
+    <Folder Include="public\js\app\account\" />
+    <Folder Include="public\js\app\shared\" />
+    <Folder Include="public\js\jqgrid\" />
+    <Folder Include="public\js\jqgrid\i18n\" />
+    <Folder Include="schemas\account\" />
+    <Folder Include="schemas\ecommerce\" />
+    <Folder Include="services\" />
+    <Folder Include="public\" />
+    <Folder Include="public\fonts\" />
+    <Folder Include="public\helpers\" />
+    <Folder Include="public\images\" />
+    <Folder Include="public\images\products\" />
+    <Folder Include="public\images\subCategoriasRopa\" />
+    <Folder Include="public\images\subCategoriesSkate\" />
+    <Folder Include="public\js\" />
+    <Folder Include="public\css\" />
+    <Folder Include="schemas\" />
+    <Folder Include="services\database\" />
+    <Folder Include="services\ecommerce\" />
+    <Folder Include="services\account\" />
+    <Folder Include="views\" />
+    <Folder Include="views\ecommerce\" />
+    <Folder Include="views\account\" />
+    <Folder Include="views\management\" />
+    <Folder Include="views\shared\" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsTools.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

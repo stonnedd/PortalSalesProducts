@@ -1,0 +1,63 @@
+﻿@html.extend("/shared/layout", function(model){
+    @html.block("scripts", function(model){
+        <script src="/js/app/ecommerce/mainPageCtrl.js"></script>
+    })
+    @html.block("body", function(model){
+<div id="home" ng-controller="mainPageController">
+    <div id="home-slider" class="carousel slide carousel-fade" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#home-slider" data-slide-to="0" class="active"></li>
+            <li data-target="#home-slider" data-slide-to="1"></li>
+            <li data-target="#home-slider" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="item active" style="background: url(/images/banner_slider-1x.jpg);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="carousel-content">
+                                <h2 class="animated fadeInUpBig text-center text-black">Vandalos</h2>
+                                <p class="animated rollIn text-black text-center"><span class="text900"> We </span>   <br> <i class="fa fa-heart-o"></i> <span class="text900">Skateboarding</span><br><br> <a href="/Skate" class="btn btn-black btn-lg">Get Started</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item" style="background: url(/images/banner_slider-2x.jpg);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="carousel-content">
+                                <h3 class="animated fadeInLeftBig text-left">Online</h3>
+                                <p class="animated fadeInDownBig text-left">Skateboard Shop<br> </p>
+                                <a class="btn btn-black btn-lg animated fadeInRight" href="#"> &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item" style="background: url(/images/banner_slider-3x.jpg);">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="carousel-content">
+                                <h3 class="animated fadeInLeftBig text-right">Online</h3>
+                                <p class="animated fadeInDownBig text-right">Skateboard Shop<br> </p>
+                                <a class="btn btn-black btn-lg animated fadeInRight" href="#"> &raquo;</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#home-slider" data-slide="prev">
+            <i class="fa fa-angle-left"></i>
+        </a>
+        <a class="right carousel-control" href="#home-slider" data-slide="next">
+            <i class="fa fa-angle-right"></i>
+        </a>
+        <div class="pattern"></div>
+    </div>
+</div>
+    })
+})

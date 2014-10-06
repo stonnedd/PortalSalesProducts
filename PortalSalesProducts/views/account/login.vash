@@ -1,0 +1,74 @@
+﻿@html.extend("/shared/layoutAccount", function(model){
+    @html.block("scripts", function(model){
+<script src="/js/app/account/loginCtrl.js"></script>
+    })
+    @html.block("body", function(model){
+<div ng-controller="loginController" ng-cloak class="panel-login">
+    <form class=" form-horizontal" id="loginForm" role="form" novalidate="novalidate">
+        <div class="panel panel-default element-center">
+            <div class="panel-header">
+                <h2 class="modal-title element-center">Ingresar al administrador</h2>
+                <div class="element-center">
+                    <h4>
+                        <i class="glyphicon glyphicon-cog"></i>
+                        &nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-cloud"></i>
+                        &nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-home"></i>
+                        &nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-phone"></i>
+                        &nbsp;&nbsp;&nbsp;<i class="glyphicon glyphicon-tasks"></i>&nbsp;&nbsp;&nbsp;
+                    </h4>
+                </div>
+            </div>
+            <div class="panel-body">
+                <h4 class="element-center">Ingrese los datos para acceder administrar su sitio</h4>
+                <hr />
+                <div class="row">
+                    <div class="col-xs-3">&nbsp;</div>
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input name="username" class="form-control" id="username" type="text" placeholder="Usuario" value=""
+                                   ng-model="m.username" data-val-required="No ha ingresado el usuario" data-val="true">
+                        </div>
+                        <div class="input-group error-font">
+                            <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="username"></span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-xs-3">&nbsp;</div>
+                    <div class="col-xs-6">
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input name="password" class="form-control" id="password" type="password" placeholder="Contrase&ntilde;a"
+                                   ng-model="m.password" data-val-required="No ha ingresado la contrase&ntilde;a" data-val="true">
+                        </div>
+                        <div class="input-group error-font">
+                            <span class="field-validation-valid" data-valmsg-replace="true" data-valmsg-for="password"></span>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div ng-show="msgError" class="alert alert-danger element-center error-font">
+                            {{msgError}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default btn-primary btn-sm" ng-disabled="working==true" ng-click="login('#loginForm', '/management/doLogin')">Ingresar</button>
+            </div>
+        </div>
+    </form>
+    <div class="blocker" ng-show="working">
+        <div>
+            Ingresando...<img src="/images/ajax_loader.gif" alt="" />
+        </div>
+    </div>
+</div>
+
+    })
+})

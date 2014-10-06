@@ -1,0 +1,8 @@
+﻿@html.extend("/shared/layoutAccount", function(model){
+    @html.block("scripts", function(model){
+        
+    })
+    @html.block("body", function(model){
+        
+    })
+})

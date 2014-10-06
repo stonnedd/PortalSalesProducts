@@ -1,0 +1,124 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="Vandalos Skateboarding" content="width=device-width, initial-scale=1.0">
+    <meta name="Online Shop" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>Vandalos Skateboard</title>
+    <link rel="shortcut icon" href="/images/favicon.png">
+    <link href="/css/ace/font-awesome.min.css" rel="stylesheet" />
+    <link href="/css/jquery-ui-1.10.3.full.min.css" rel="stylesheet" />
+    <link href="/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="/css/ace/ace-skins.min.css" rel="stylesheet" />
+    <link href="/css/ace/ace.min.css" rel="stylesheet" />
+    <link href="/css/ace/ace-rtl.min.css" rel="stylesheet" />
+    <link href="/css/jqgrid/ui.jqgrid.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/responsive.css" rel="stylesheet">
+    <link href="/lib/angularjs/angular-csp.css" rel="stylesheet" />
+    @html.block("css")
+</head>
+<body ng-app="accountApp">
+    @if(model.user){
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav nav-left">
+                    <li><a href="/management/categories">Categorías</a></li>
+                    <li><a href="/management/subcategories">Subcategorías</a></li>
+                    <li><a href="/management/brands">Marcas</a></li>
+                    <li><a href="/management/products">Productos</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    }
+
+    <div>@html.block("body")</div>
+    <footer>
+        <div id="copyright-login">
+            <div class="row">
+                <div class="col-xs-12">
+                    <small>Powered by Idra Soft S.A. de C.V 2014 </small>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="ProcessingDlgId" class="modal fade" ng-controller="processingController" data-backdrop="static" data-keyboard="false" ng-cloak>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="alert alert-info"><h4>Procesando...</h4></div>
+                    <br />
+                    <progressbar class="progress-striped active" value="count" type="info"></progressbar>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="MessageBoxDlgId" class="modal fade" ng-controller="messageController" data-backdrop="static" ng-cloak>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="alert alert-{{Type=='primary'?'info':Type}}">
+                        <button type="button" class="close" ng-click="ok()">&times;</button>
+                        <h4 class="modal-title element-center">{{Title}}</h4>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="element-center" ng-bind-html="Message"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-{{Type}}" ng-click="ok()">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="ConfirmationDlgId" class="modal fade" ng-controller="confirmationController" data-backdrop="static" ng-cloak>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="alert alert-{{Type=='primary'?'info':Type}}">
+                        <button type="button" class="close" ng-click="no()">&times;</button>
+                        <h4 class="modal-title element-center">{{Title}}</h4>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <div class="element-center" ng-bind-html="Message"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-{{Type}}" ng-click="yes()">Si</button>
+                    <button type="button" class="btn btn-default" ng-click="no()">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+    <div id="dlgUpsert"></div>
+
+
+    <script src="/js/jquery-1.10.2.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery.validate.min.js"></script>
+    <script src="/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="/lib/angularjs/angular.min.js"></script>
+    <script src="/js/jqgrid/jquery.jqGrid.min.js"></script>
+    <script src="/js/jqgrid/i18n/grid.locale-es.js"></script>
+    <script src="/js/ace/ace-elements.min.js"></script>
+    <script src="/js/ace/ace.min.js"></script>
+    <script src="/js/common.js"></script>
+    <script src="/js/app/shared/accountApp.js"></script>
+    <script src="/js/app/shared/hiddenDrct.js"></script>
+    <script src="/js/app/shared/sharedSvc.js"></script>
+    <script src="/js/app/shared/upsertCtrl.js"></script>
+    @html.block("scripts")
+</body>
+</html>
