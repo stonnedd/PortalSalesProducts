@@ -9,7 +9,6 @@
             }
         },
     });
-    
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.registerTask('default', ['nodemon']);
 };
