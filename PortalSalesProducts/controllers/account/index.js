@@ -1,5 +1,5 @@
 ﻿var authController = require("./authController");
-
+//Controlador
 var controllers = {};
 
 controllers.init = function(app) {
