@@ -13,10 +13,12 @@ uploadController.init = function (app, dirname) {
         files.forEach(function (file) {
             var pathExtension;
             switch (req.body.upType) {
-            case "1":
+                case "1":
                     pathExtension = '/subCategory';
                     break;
-                
+                case "4":
+                    pathExtension = '/banners';
+                    break;                
             default: 
                     pathExtension = '';
             }
