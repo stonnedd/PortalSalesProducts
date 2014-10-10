@@ -41,12 +41,14 @@
     <Compile Include="controllers\management\mainController.js" />
     <Compile Include="controllers\management\index.js" />
     <Compile Include="controllers\management\productsController.js" />
+    <Compile Include="controllers\management\bannerController.js" />
     <Compile Include="controllers\management\subCategoriesController.js" />
     <Compile Include="controllers\management\uploadController.js" />
     <Compile Include="Gruntfile.js" />
     <Compile Include="infrastructure\jqgrid\jqgridUtil.js" />
     <Compile Include="models\account\userModel.js" />
     <Compile Include="models\ecommerce\brandModel.js" />
+    <Compile Include="models\ecommerce\bannerModel.js" />
     <Compile Include="models\ecommerce\categoryModel.js" />
     <Compile Include="models\ecommerce\productModel.js" />
     <Compile Include="models\ecommerce\subCategoryModel.js" />
@@ -70,11 +72,14 @@
     <Compile Include="public\js\common.js" />
     <Compile Include="public\js\gmap3.js" />
     <Compile Include="public\js\html5shiv.js" />
+    <Compile Include="schemas\ecommerce\bannerSchema.js" />
     <Compile Include="services\management\categoryService.js" />
     <Compile Include="services\management\subCategoryService.js" />
     <Compile Include="utils\uuid.js" />
     <Content Include="public\css\btnUpload.min.css" />
     <Content Include="views\management\brandsUpsert.vash" />
+    <Content Include="views\management\banners.vash" />
+    <Content Include="views\management\bannersUpsert.vash" />
     <Content Include="views\shared\layoutUpload.vash" />
     <None Include="public\js\jquery-1.10.2.intellisense.js" />
     <Compile Include="public\js\jqgrid\i18n\grid.locale-es.js" />
@@ -230,6 +235,7 @@
     <Folder Include="models\ecommerce\" />
     <Folder Include="models\account\" />
     <Folder Include="infrastructure\" />
+    <Folder Include="public\images\banners\" />
     <Folder Include="utils\" />
     <Folder Include="public\css\jqgrid\" />
     <Folder Include="public\css\ace\" />
