@@ -2,6 +2,7 @@
 var CategoryModel = require("../../models/ecommerce/CategoryModel.js");
 var jqgridUtil = require("../../infrastructure/jqgrid/jqgridUtil.js");
 
+//
 var categoriesController = {};
 
 categoriesController.init = function (app) {

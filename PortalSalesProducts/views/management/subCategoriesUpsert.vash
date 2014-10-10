@@ -1,0 +1,112 @@
+﻿@html.extend("/shared/layoutUpload", function(model){
+    @html.block("scripts", function(model){
+    })
+    @html.block("body", function(model){
+<div ng-controller="upsertController" ng-cloak class="panel-login" style="width: 1000px !important;">
+    <form class=" form-horizontal" id="upsertForm" role="form" novalidate="novalidate">
+        <div class="panel panel-default element-center">
+            <div class="panel-header">
+                <br />
+                <h2 class="modal-title element-center">Subcategoría</h2>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="panel panel-default panel-primary">
+                            <div class="panel-heading">
+                                <span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;Información de la subcategoría
+                            </div>
+                            <div class="panel-body">
+                                <input type="hidden" ng-model="m.id" ng-update-hidden ng-init="m.id='@model.id'" id="itemId" name="itemId" />
+                                <div class="row">
+                                    <br />
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Subcategoría:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <input class="form-control" data-val="true"
+                                                       data-val-length="No puede exceder de 20 caracteres"
+                                                       data-val-length-max="20" data-val-length-min="1"
+                                                       data-val-required="Nombre es un campo requerido"
+                                                       id="subCatName" name="subCatName"
+                                                       type="text" ng-model="m.name"
+                                                       ng-init="m.name = '@model.name'" />
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="subCatName"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Categoría:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <select ng-model="m.category"
+                                                        ng-options="category.name for category in categories"
+                                                        ng-init="categories = [@model.categories]; initSelect(categories, 'category', '@model.category');"></select>
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="position"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <br />
+                                    <div class="col-xs-10 col-xs-offset-1 ">
+                                        <div class="col-xs-12 element-center" ng-init="m.image= '@(model.image ? model.image :'')';">
+                                            Agregar imagen:
+                                        </div>
+                                        <div class="col-xs-10 col-xs-offset-1 element-center" ng-controller="UploadCtrl">
+                                            <upload-button class="btn btn-primary btn-upload"
+                                                            url="/upload" data="upType" ng-init="upType={upType:'1'};"
+                                                            on-success="onGlobalSuccess(response)">
+                                                Subir archivo
+                                            </upload-button>
+                                            <br />
+                                            <br />
+                                            <div class="col-xs-10 col-xs-offset-1 element-center">
+                                                <img src="{{m.image}}"
+                                                     ng-model="m.image"
+                                                     ng-init="m.image = '@(model.imgPath ? model.imgPath :'/images/emptyImg.png')'"
+                                                     width="200" height="200" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div ng-show="msgError" class="alert alert-danger element-center error-font">
+                            {{msgError}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default btn-sm" ng-disabled="working==true" ng-click="returnPage()" ng-init="urlToReturn='/management/subCategories'">Regresar</button>
+                <button class="btn btn-default btn-primary btn-sm" ng-disabled="working==true" 
+                        ng-click="(isValidImg() ? save('#upsertForm', '/management/subCategories/doUpsert') : undefined)">Guardar</button>
+            </div>
+        </div>
+    </form>
+    <div class="blocker" ng-show="working">
+        <div>
+            Guardando...<img src="/images/ajax_loader.gif" alt="" />
+        </div>
+    </div>
+</div>
+
+    })
+})

@@ -7,7 +7,7 @@ var ctrlEcommerce = require("./controllers/ecommerce");
 var ctrlAccount = require("./controllers/account");
 var ctrlManagement = require("./controllers/management");
 var svcDatabase = require("./services/database");
-//var svcAuth = require("./services/account/auth.js");
+var svcAuth = require("./services/account/auth.js");
 var http = require('http');
 var path = require('path');
 var mongoose = require('mongoose');
@@ -24,6 +24,7 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.cookieParser());
 app.use(express.session({ secret: "keyboard cat" }));
+app.use(express.bodyParser());
 ctrlAccount.init(app);
 app.use(express.methodOverride());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
@@ -37,7 +38,7 @@ if ('development' == app.get('env')) {
 
 ctrlEcommerce.init(app);
 svcDatabase.init(app);
-ctrlManagement.init(app);
+ctrlManagement.init(app,__dirname);
 
 //svcAuth.registerAdmin();
 

@@ -36,9 +36,13 @@
     <Compile Include="controllers\ecommerce\homeController.js" />
     <Compile Include="controllers\ecommerce\index.js" />
     <Compile Include=".bowerrc" />
+    <Compile Include="controllers\management\brandsController.js" />
     <Compile Include="controllers\management\categoriesController.js" />
     <Compile Include="controllers\management\mainController.js" />
     <Compile Include="controllers\management\index.js" />
+    <Compile Include="controllers\management\productsController.js" />
+    <Compile Include="controllers\management\subCategoriesController.js" />
+    <Compile Include="controllers\management\uploadController.js" />
     <Compile Include="Gruntfile.js" />
     <Compile Include="infrastructure\jqgrid\jqgridUtil.js" />
     <Compile Include="models\account\userModel.js" />
@@ -58,12 +62,20 @@
     <Compile Include="public\js\app\shared\hiddenDrct.js" />
     <Compile Include="public\js\app\shared\menuCtrl.js" />
     <Compile Include="public\js\app\shared\sharedSvc.js" />
+    <Compile Include="public\js\app\shared\uploadApp.js" />
+    <Compile Include="public\js\app\shared\uploadCtrl.js" />
     <Compile Include="public\js\app\shared\upsertCtrl.js" />
     <Compile Include="public\js\bootstrap.js" />
     <Compile Include="public\js\bootstrap.min.js" />
     <Compile Include="public\js\common.js" />
     <Compile Include="public\js\gmap3.js" />
     <Compile Include="public\js\html5shiv.js" />
+    <Compile Include="services\management\categoryService.js" />
+    <Compile Include="services\management\subCategoryService.js" />
+    <Compile Include="utils\uuid.js" />
+    <Content Include="public\css\btnUpload.min.css" />
+    <Content Include="views\management\brandsUpsert.vash" />
+    <Content Include="views\shared\layoutUpload.vash" />
     <None Include="public\js\jquery-1.10.2.intellisense.js" />
     <Compile Include="public\js\jqgrid\i18n\grid.locale-es.js" />
     <Compile Include="public\js\jqgrid\jquery.jqGrid.min.js" />
@@ -198,9 +210,13 @@
     <Content Include="README.md" />
     <Content Include="views\account\login.vash" />
     <Content Include="views\ecommerce\index.vash" />
+    <Content Include="views\management\brands.vash" />
     <Content Include="views\management\categories.vash" />
     <Content Include="views\management\index.vash" />
     <Content Include="views\management\categoriesUpsert.vash" />
+    <Content Include="views\management\products.vash" />
+    <Content Include="views\management\subCategories.vash" />
+    <Content Include="views\management\subCategoriesUpsert.vash" />
     <Content Include="views\shared\layoutAccount.vash" />
     <Content Include="views\shared\layout.vash" />
   </ItemGroup>
@@ -214,8 +230,10 @@
     <Folder Include="models\ecommerce\" />
     <Folder Include="models\account\" />
     <Folder Include="infrastructure\" />
+    <Folder Include="utils\" />
     <Folder Include="public\css\jqgrid\" />
     <Folder Include="public\css\ace\" />
+    <Folder Include="public\images\subCategory\" />
     <Folder Include="public\js\ace\" />
     <Folder Include="public\js\app\" />
     <Folder Include="public\js\app\ecommerce\" />
@@ -239,6 +257,7 @@
     <Folder Include="services\database\" />
     <Folder Include="services\ecommerce\" />
     <Folder Include="services\account\" />
+    <Folder Include="services\management\" />
     <Folder Include="views\" />
     <Folder Include="views\ecommerce\" />
     <Folder Include="views\account\" />

@@ -101,6 +101,10 @@
     <script src="/js/common.js"></script>
     <script src="/js/app/shared/ecommerceApp.js"></script>
     <script src="/js/app/shared/menuCtrl.js"></script>
+
+    <script src="/lib/angular/angular.js" charset="utf-8"></script>
+    <script src="/lib/angular-upload/angular-upload.js"></script>
+
     @html.block("scripts")
 </body>
 </html>

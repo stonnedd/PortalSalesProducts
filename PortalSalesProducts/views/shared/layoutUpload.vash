@@ -19,9 +19,11 @@
     <link href="/css/style.css" rel="stylesheet">
     <link href="/css/responsive.css" rel="stylesheet">
     <link href="/lib/angularjs/angular-csp.css" rel="stylesheet" />
+    <link href="/css/btnUpload.min.css" rel="stylesheet" />
+
     @html.block("css")
 </head>
-<body ng-app="accountApp">
+<body ng-app="uploadApp">
     @if(model.user){
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
@@ -110,15 +112,17 @@
     <script src="/js/jquery.validate.min.js"></script>
     <script src="/js/jquery.validate.unobtrusive.min.js"></script>
     <script src="/lib/angularjs/angular.min.js"></script>
-    <script src="/js/jqgrid/jquery.jqGrid.min.js"></script>
-    <script src="/js/jqgrid/i18n/grid.locale-es.js"></script>
     <script src="/js/ace/ace-elements.min.js"></script>
     <script src="/js/ace/ace.min.js"></script>
     <script src="/js/common.js"></script>
-    <script src="/js/app/shared/accountApp.js"></script>
+    <script src="/lib/angular-upload/angular-upload.js"></script>
+    <script src="/js/app/shared/uploadApp.js"></script>
+    <script src="/js/app/shared/uploadCtrl.js"></script>
     <script src="/js/app/shared/hiddenDrct.js"></script>
     <script src="/js/app/shared/sharedSvc.js"></script>
     <script src="/js/app/shared/upsertCtrl.js"></script>
+
+
 
     @html.block("scripts")
 </body>

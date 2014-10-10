@@ -2,7 +2,7 @@
 var ProductModel = require('../../models/ecommerce/productModel.js');
 var categoryModel = require('../../models/ecommerce/categoryModel.js');
 var brandModel = require('../../models/ecommerce/brandModel.js');
-var subCategoryModel = require('../../models/ecommerce/subCategoryModel.js');
+var SubCategoryModel = require('../../models/ecommerce/subCategoryModel.js');
 
 
 (function (databaseInitService) {

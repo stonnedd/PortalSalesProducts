@@ -7,9 +7,9 @@ var productSchema   = new Schema({
         type: mongoose.Schema.Types.ObjectId,
         index: true, required: true, unique: true
     },
-    category:   {type: String},
+    name: { type: String },
+    category: { type: String },
     subcategory:{type: String},
-    product:    {type: String},
     model:      {type: String},
     brand:      {type: String},
     size:       {type: String},
@@ -17,7 +17,7 @@ var productSchema   = new Schema({
     description:{type: String},
     color :     {type: String},
     quantity:   {type: Number},
-    imgPath1:   {type: String},
+    imgPath:   {type: String},
     uploadDate: {type: Date, default: Date.now},
     isOutlet:   {type: Boolean}
 });
