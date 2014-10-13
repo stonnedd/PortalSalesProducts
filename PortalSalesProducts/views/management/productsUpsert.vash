@@ -1,0 +1,306 @@
+﻿@html.extend("/shared/layoutUpload", function(model){
+    @html.block("scripts", function(model){
+    })
+    @html.block("body", function(model){
+<div ng-controller="upsertController" ng-cloak class="panel-login" style="width: 1000px !important;">
+    <form class=" form-horizontal" id="upsertForm" role="form" novalidate="novalidate">
+        <div class="panel panel-default element-center">
+            <div class="panel-header">
+                <br />
+                <h2 class="modal-title element-center">Productos</h2>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-10 col-xs-offset-1">
+                        <div class="panel panel-default panel-primary">
+                            <div class="panel-heading">
+                                <span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;Información de los productos
+                            </div>
+                            <div class="panel-body">
+                                <input type="hidden" ng-model="m.id" ng-update-hidden ng-init="m.id='@model.id'" id="itemId" name="itemId" />
+                                <div class="row">
+                                    <br />
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Producto:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <input class="form-control" data-val="true"
+                                                       data-val-length="No puede exceder de 20 caracteres"
+                                                       data-val-length-max="20" data-val-length-min="1"
+                                                       data-val-required="Nombre es un campo requerido"
+                                                       id="productName" name="productName"
+                                                       type="text" ng-model="m.name"
+                                                       ng-init="m.name = '@model.name'" />
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="productName"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Categorías:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <select ng-model="m.category"
+                                                        ng-options="category.name for category in categories"
+                                                        ng-init="categories = [@model.categories]; initSelect(categories, 'category', '@model.category');"></select>
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="category"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <br />
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Subcategoria:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <select ng-model="m.subCategory"
+                                                        ng-options="subCategory.name for subCategory in subCategories"
+                                                        ng-init="subCategories = [@model.subCategories]; initSelect(subCategories, 'subCategory', '@model.subCategory');"></select>
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="subCategory"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Marca:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <select ng-model="m.brand"
+                                                        ng-options="brand.name for brand in brands"
+                                                        ng-init="brands = [@model.brands]; initSelect(brands, 'brand', '@model.brand');"></select>
+
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="brand"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <br />
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Modelo:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <input class="form-control" data-val="true"
+                                                       data-val-length="No puede exceder de 20 caracteres"
+                                                       data-val-length-max="20" data-val-length-min="1"
+                                                       data-val-required="Modelo es un campo requerido"
+                                                       id="modelName" name="modelName"
+                                                       type="text" ng-model="m.model"
+                                                       ng-init="m.model = '@model.model'" />
+
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="model"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Talla:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <input class="form-control" data-val="true"
+                                                       data-val-length="No puede exceder de 20 caracteres"
+                                                       data-val-length-max="20" data-val-length-min="1"
+                                                       data-val-required="Talla es un campo requerido"
+                                                       id="size" name="size"
+                                                       type="text" ng-model="m.size"
+                                                       ng-init="m.size = '@model.size'" />
+
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="size"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <br />
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Precio:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <input class="form-control" data-val="true"
+                                                       data-val-length="No puede exceder de 20 caracteres"
+                                                       data-val-length-max="20" data-val-length-min="1"
+                                                       data-val-required="Precio es un campo requerido"
+                                                       id="price" name="price"
+                                                       type="number" ng-model="m.price"
+                                                       ng-init="m.price = '@model.price'" />
+
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="price"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Color:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <input class="form-control" data-val="true"
+                                                       data-val-length="No puede exceder de 20 caracteres"
+                                                       data-val-length-max="20" data-val-length-min="1"
+                                                       data-val-required="Color es un campo requerido"
+                                                       id="color" name="color"
+                                                       type="text" ng-model="m.color"
+                                                       ng-init="m.color = '@model.color'" />
+
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="color"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <br />
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Cantidad:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <input class="form-control" data-val="true"
+                                                       data-val-length="No puede exceder de 20 caracteres"
+                                                       data-val-length-max="20" data-val-length-min="1"
+                                                       data-val-required="Cantidad es un campo requerido"
+                                                       id="quantity" name="quantity"
+                                                       type="number" ng-model="m.quantity"
+                                                       ng-init="m.quantity = '@model.quantity'" />
+
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="quantity"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                OUTLET:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+
+                                                <div class="col-xs-7 element-left" ng-init="m.isOutlet = @(model.isOutlet ? model.isOutlet : false); ">
+                                                    <label>
+                                                        <input type="checkbox" ng-model="m.isOutlet" />
+                                                    </label>
+                                                    <br />
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <br />
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Descripción:
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                                <input class="form-control" data-val="true"
+                                                       data-val-length="No puede exceder de 400 caracteres"
+                                                       data-val-length-max="400" data-val-length-min="1"
+                                                       data-val-required="Descripción es un campo requerido"
+                                                       id="description" name="description"
+                                                       type="text" ng-model="m.description"
+                                                       ng-init="m.description = '@model.description'" />
+
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="description"
+                                                      data-valmsg-replace="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <br />
+                                <div ng-controller="UploadCtrl">
+                                    <div class="row">
+                                        <div class="col-xs-10 col-xs-offset-1 element-center">
+                                            <upload-button class="btn btn-primary btn-upload"
+                                                           url="/upload" data="upType" ng-init="upType={upType:'2'};"
+                                                           on-success="onGlobalSuccess(response)">
+                                                Subir imagen
+                                            </upload-button>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-xs-10 col-xs-offset-1 element-center">
+                                            <img ng-src="{{m.image}}"
+                                                 ng-model="m.image"
+                                                 ng-init="m.image = '@(model.imgPath ? model.imgPath :'/images/emptyImg.png')'"
+                                                 width="200" height="200" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div ng-show="msgError" class="alert alert-danger element-center error-font">
+                            {{msgError}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-default btn-sm" ng-disabled="working==true" ng-click="returnPage()" ng-init="urlToReturn='/management/products'">Regresar</button>
+                <button class="btn btn-default btn-primary btn-sm" ng-disabled="working==true" ng-click="save('#upsertForm', '/management/products/doUpsert')">Guardar</button>
+            </div>
+        </div>
+    </form>
+    <div class="blocker" ng-show="working">
+        <div>
+            Guardando...<img src="/images/ajax_loader.gif" alt="" />
+        </div>
+    </div>
+</div>
+
+    })
+})

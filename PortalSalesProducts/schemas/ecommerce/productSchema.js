@@ -3,17 +3,13 @@ var Schema = mongoose.Schema;
 
 var productSchema   = new Schema({
 
-    idProduct: {
-        type: mongoose.Schema.Types.ObjectId,
-        index: true, required: true, unique: true
-    },
     name: { type: String },
     category: { type: String },
     subcategory:{type: String},
     model:      {type: String},
     brand:      {type: String},
     size:       {type: String},
-    price:      {type: String},
+    price:      {type: Number},
     description:{type: String},
     color :     {type: String},
     quantity:   {type: Number},

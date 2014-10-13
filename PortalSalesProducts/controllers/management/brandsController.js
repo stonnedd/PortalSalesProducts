@@ -1,9 +1,7 @@
 ﻿var authSvc  = require("../../services/account/auth.js");
 var BrandModel = require("../../models/ecommerce/brandModel.js");
 var jqgridUtil = require("../../infrastructure/jqgrid/jqgridUtil.js");
-var catCatalogSvc = require("../../services/management/categoryService.js");
-var subCatCatalogSvc = require("../../services/management/subCategoryService.js");
-
+var CatalogSvc = require("../../services/management/catalogService.js");
 var brandsController = {};
 
 brandsController.init = function (app) {
@@ -13,27 +11,27 @@ brandsController.init = function (app) {
     });
     
     app.post("/management/brands/list", authSvc.checkAuth, function (req, res) {
-        var toSelect = { _id: 1, name: 1, category: 1, subCategory: 1};
+        var toSelect = { _id: 1, name: 1, category: 1, subCategory: 1, uploadDate: 1};
         jqgridUtil.doQuery(req, res, BrandModel, toSelect);
     });
     
     app.get("/management/brands/upsert", authSvc.checkAuth, function (req, res) {
-        catCatalogSvc.getCategories(function (err, result) {
+        CatalogSvc.getCategories(function (err, catalog) {
             if (err) {
                 res.json({ msg: "No hay datos en el sistema" });
             } else {
-                subCatCatalogSvc.getSubCategories(function (err2, result1) {
-                    if (err2) {
-                        res.json({ msg: "No hay datos en el sistema" });
-                    } else {
-                        BrandModel.findOne({ _id: req.query.id }, function (err3, brand) {
-                            if (err3 || !brand) {
-                                res.render("management/brandsUpsert", { user: req.user });
-                            } else {
-                                brand.user = req.user;
-                                res.render("management/brandsUpsert", brand);
-                            }
+                BrandModel.findOne({ _id: req.query.id }, function (err, brand) {
+                    if (err || !brand) {
+                        res.render("management/brandsUpsert", {
+                            user: req.user,
+                            categories: catalog[0],
+                            subCategories: catalog[1]
                         });
+                    } else {
+                        brand.user = req.user;
+                        brand.categories = catalog[0];
+                        brand.subCategories = catalog[1];
+                        res.render("management/brandsUpsert", brand);
                     }
                 });
             }
@@ -45,8 +43,8 @@ brandsController.init = function (app) {
         var brands = new BrandModel({
             id: req.body.id,
             name: req.body.name,
-            category: req.body.category,
-            subcategory: req.body.subcategory
+            category: req.body.categories,
+            subCategory: req.body.subCategories
         });
         
         if (!req.body.id) {

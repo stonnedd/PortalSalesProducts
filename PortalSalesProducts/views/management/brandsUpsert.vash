@@ -7,14 +7,14 @@
         <div class="panel panel-default element-center">
             <div class="panel-header">
                 <br />
-                <h2 class="modal-title element-center">Subcategoría</h2>
+                <h2 class="modal-title element-center">Marcas</h2>
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-10 col-xs-offset-1">
                         <div class="panel panel-default panel-primary">
                             <div class="panel-heading">
-                                <span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;Información de la subcategoría
+                                <span class="glyphicon glyphicon-map-marker"></span>&nbsp;&nbsp;Información de las marcas
                             </div>
                             <div class="panel-body">
                                 <input type="hidden" ng-model="m.id" ng-update-hidden ng-init="m.id='@model.id'" id="itemId" name="itemId" />
@@ -23,19 +23,19 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4 element-right">
-                                                Subcategoría:
+                                                Marca:
                                             </div>
                                             <div class="col-xs-7 element-left">
                                                 <input class="form-control" data-val="true"
                                                        data-val-length="No puede exceder de 20 caracteres"
                                                        data-val-length-max="20" data-val-length-min="1"
                                                        data-val-required="Nombre es un campo requerido"
-                                                       id="subCatName" name="subCatName"
+                                                       id="brandName" name="brandName"
                                                        type="text" ng-model="m.name"
                                                        ng-init="m.name = '@model.name'" />
                                             </div>
                                             <div class="col-xs-9 col-xs-offset-3">
-                                                <span class="field-validation-valid" data-valmsg-for="subCatName"
+                                                <span class="field-validation-valid" data-valmsg-for="brandName"
                                                       data-valmsg-replace="true"></span>
                                             </div>
                                         </div>
@@ -43,12 +43,19 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4 element-right">
-                                                Categoría:
+                                                Categorías:
                                             </div>
-                                            <div class="col-xs-7 element-left">
-                                                <select ng-model="m.category"
-                                                        ng-options="category.name for category in categories"
-                                                        ng-init="categories = [@model.categories]; m.category = categories[0];"></select>
+                                            <div class="col-xs-7 element-left" ng-init="categories = [@model.categories]; initSelect(categories, 'category', '@model.category');">
+                                                <div ng-repeat="category in categories">
+                                                    <label>
+                                                        <input type="checkbox"
+                                                               name="selectedCategories[]"
+                                                               value="{{category}}"
+                                                               ng-checked="m['categories'].indexOf(category.name) > -1"
+                                                               ng-click="toggleSelection(category.name, 'categories')" /> {{category.name}}
+                                                    </label>
+                                                    <br />
+                                                </div>
                                             </div>
                                             <div class="col-xs-9 col-xs-offset-3">
                                                 <span class="field-validation-valid" data-valmsg-for="position"
@@ -57,24 +64,39 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <br />
-                                    <div class="col-xs-10 col-xs-offset-1 ">
-                                        <div class="col-xs-12 element-center">
-                                            Agregar imagen:
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                            </div>
+                                            <div class="col-xs-7 element-left">
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                            </div>
                                         </div>
-                                        <div class="col-xs-10 col-xs-offset-1 element-center" ng-controller="UploadCtrl">
-                                            <upload-button class="btn btn-primary btn-upload"
-                                                           url="/upload" data="upType" ng-init="upType={upType:'1'};"
-                                                           on-success="onGlobalSuccess(response)">
-                                                Subir archivo
-                                            </upload-button>
-                                            <br />
-                                            <br />
-                                            <div class="col-xs-10 col-xs-offset-1 element-center">
-                                                <img src="{{m.image}}"
-                                                     ng-model="m.image" ng-init="m.image = '@(model.image ? model.image :'/images/emptyImg.png')'"
-                                                     width="200" height="200" />
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <div class="row">
+                                            <div class="col-xs-4 element-right">
+                                                Subcategorías:
+                                            </div>
+                                            <div class="col-xs-7 element-left" ng-init="subCategories = [@model.subCategories]; initSelect(subCategories, 'subCategory', '@model.subCategory');">
+                                                <div ng-repeat="subCategory in subCategories">
+                                                    <label>
+                                                        <input type="checkbox"
+                                                               name="selectedSubCategories[]"
+                                                               value="{{subCategory}}"
+                                                               ng-checked="m['subCategories'].indexOf(subCategory.name) > -1"
+                                                               ng-click="toggleSelection(subCategory.name, 'subCategories')" /> {{subCategory.name}}
+                                                    </label>
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-9 col-xs-offset-3">
+                                                <span class="field-validation-valid" data-valmsg-for="subCategory"
+                                                      data-valmsg-replace="true"></span>
                                             </div>
                                         </div>
                                     </div>
@@ -83,7 +105,6 @@
                         </div>
                     </div>
                 </div>
-
 
                 <div class="row">
                     <div class="col-xs-12">
@@ -94,8 +115,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-default btn-sm" ng-disabled="working==true" ng-click="returnPage()" ng-init="urlToReturn='/management/categories'">Regresar</button>
-                <button class="btn btn-default btn-primary btn-sm" ng-disabled="working==true" ng-click="save('#upsertForm', '/management/categories/doUpsert')">Guardar</button>
+                <button class="btn btn-default btn-sm" ng-disabled="working==true" ng-click="returnPage()" ng-init="urlToReturn='/management/brands'">Regresar</button>
+                <button class="btn btn-default btn-primary btn-sm" ng-disabled="working==true" ng-click="save('#upsertForm', '/management/brands/doUpsert')">Guardar</button>
             </div>
         </div>
     </form>

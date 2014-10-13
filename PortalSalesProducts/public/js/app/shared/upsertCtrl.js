@@ -15,6 +15,31 @@
             .then($scope.onSuccess, $scope.onError);
     };
     
+    $scope.singleSelection = function singleSelection($scope) {
+        $scope.value = true ;
+    }
+
+    $scope.toggleSelection = function toggleSelection(itemSel, key) {
+
+        if (!$scope.m[key]) {
+            $scope.m[key] = [];
+        }
+
+        var idx = $scope.m[key].indexOf(itemSel);
+        
+        if (idx > -1) {
+            $scope.m[key].splice(idx, 1);
+        }
+
+        else {
+            $scope.m[key].push(itemSel);
+        }
+        if (!$scope.m[key]) {
+            $scope.m[key] = '';
+        }
+        console.log($scope.m[key]);
+    };
+
     $scope.isValidImg = function () {
         if (!$scope.m.image) {
             $scope.msgError = "Debe elegir una imagen, antes de guardar la información.";
@@ -22,6 +47,7 @@
         }
         return true;
     };
+    
     
     $scope.$on("onUpImgSuccess", function (ev, data) {
         $scope.m.image = data;

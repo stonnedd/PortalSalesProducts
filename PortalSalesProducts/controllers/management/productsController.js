@@ -1,10 +1,11 @@
 ﻿var authSvc = require("../../services/account/auth.js");
 var ProductModel = require("../../models/ecommerce/productModel.js");
 var jqgridUtil = require("../../infrastructure/jqgrid/jqgridUtil.js");
-
+var CatalogSvc = require("../../services/management/catalogService.js");
 var productsController = {};
 
 productsController.init = function (app) {
+    
     
     app.get("/management/products", authSvc.checkAuth, function (req, res) {
         res.render("management/products", { user: req.user });
@@ -28,32 +29,47 @@ productsController.init = function (app) {
         jqgridUtil.doQuery(req, res, ProductModel, toSelect);
     });
     
+    
     app.get("/management/products/upsert", authSvc.checkAuth, function (req, res) {
-        ProductModel.findOne({ _id: req.query.id }, function (err, product) {
-            if (err || !product) {
-                res.render("management/productsUpsert", { user: req.user });
+        CatalogSvc.getCategories(function (err, catalog) {
+            if (err) {
+                res.json({ msg: "No hay datos en el sistema" });
             } else {
-                product.user = req.user;
-                res.render("management/productsUpsert", product);
+                ProductModel.findOne({ _id: req.query.id }, function (err, product) {
+                    if (err || !product) {
+                        res.render("management/productsUpsert", {
+                            user: req.user,
+                            categories: catalog[0],
+                            subCategories: catalog[1],
+                            brands: catalog[2]
+                        });
+                    } else {
+                        product.user = req.user;
+                        product.categories = catalog[0];
+                        product.subCategories = catalog[1];
+                        product.brands = catalog[2];
+                        res.render("management/productsUpsert", product);
+                    }
+                });
             }
         });
     });
     
     
     app.post("/management/products/doUpsert", authSvc.checkAuth, function (req, res) {
+        
         var product = new ProductModel({
-            id: req.body.id,
-            name: req.body.category,
-            category: req.body.category,
-            subcategory: req.body.subcategory,
+            name: req.body.name,
+            category: req.body.category.name,
+            subcategory: req.body.subCategory.name,
             model: req.body.model,
-            brand: req.body.brand,
+            brand: req.body.brand.name,
             size: req.body.size,
             price: req.body.price,
             description: req.body.description,
             color : req.body.color,
             quantity: req.body.quantity,
-            imgPath: req.body.imgPath,
+            imgPath: req.body.image,
             isOutlet: req.body.isOutlet
         });
         
