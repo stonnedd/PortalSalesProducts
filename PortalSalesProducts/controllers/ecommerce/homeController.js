@@ -6,11 +6,12 @@ var homeController = {};
 homeController.init = function (app) {
     
     app.get("/", function (req, res) {
-        salesService.getMenuInfo(function(err, result) {
+        salesService.getMenuInfo(function (err, result) {
             res.render("ecommerce/index", {
                 title: "The hhd", 
                 error: err, 
-                categories: result[0]
+                categories: result[0],
+                banners: result[1]
             });
         });
     });
