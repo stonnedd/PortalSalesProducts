@@ -15,14 +15,7 @@ subCategoryService.getSubCategories = function (next) {
                 callback(null, subCategories);
             }
         });
-    },
-        function(callback)
-    
-    
-    
-    
-    
-    ], next);
+    }], next);
 };
 
 module.exports = subCategoryService;

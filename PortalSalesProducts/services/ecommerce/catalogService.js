@@ -9,7 +9,7 @@ var catalogService = {};
 catalogService.getCatalogs = function (param, next) {
     async.parallel([
         function (callback) {
-        categoryModel.find({}, {name:1}, function (err, categories) {
+        categoryModel.find().select({_id:0, name:1}).sort({position:1}).exec(function (err, categories) {
             if (err) {
                 callback(err);
             }
@@ -19,7 +19,7 @@ catalogService.getCatalogs = function (param, next) {
         });
     },
         function (callback) {
-        subCategoryModel.find({ category: param }).sort('name').exec(function (err, subCategories) {
+        subCategoryModel.find({ category: param }).select({ _id: 0, name: 1 }).sort('name').exec(function (err, subCategories) {
             if (err) {
                 callback(err);
             }
@@ -29,7 +29,7 @@ catalogService.getCatalogs = function (param, next) {
         });
     },
         function (callback) {
-        brandModel.find({ category: param }).sort('name').exec(function (err, brands) {
+        brandModel.find({ category: param }).select({ _id: 0, name: 1 }).sort('name').exec(function (err, brands) {
             if (err) {
                 callback(err);
             }
