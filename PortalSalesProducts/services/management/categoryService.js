@@ -1,6 +1,6 @@
 ﻿var async = require('async');
 var categoryModel = require('../../models/ecommerce/categoryModel.js');
-
+//
 var categoryService = {};
 
 categoryService.getCategories = function (next) {
