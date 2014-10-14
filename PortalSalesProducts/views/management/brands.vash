@@ -17,12 +17,12 @@
             url: '/management/brands/list',
             datatype: "json",
             mtype: 'POST',
-            colNames: ['ID', 'Marca', 'Categoría', 'Subcategoría', 'Fecha', 'Acci&oacute;n'],
+            colNames: ['ID', 'Marca', 'Categorías', 'Subcategorías', 'Fecha', 'Acci&oacute;n'],
             colModel: [
                 { name: 'id', index: 'id', hidden: true },
-                { name: 'name', width: 150, align: "center", sorttype: 'string', searchoptions: { sopt: ['bw'] } },
-                { name: 'category', width: 250, align: "center", sorttype: 'string', searchoptions: { sopt: ['bw'] } },
-                { name: 'subCategory', width: 90, align: "center",sorttype: 'string',  searchoptions: { sopt: ['bw'] }  },
+                { name: 'name', width: 120, align: "center", sorttype: 'string', searchoptions: { sopt: ['bw'] } },
+                { name: 'category', width: 200, align: "center", sorttype: 'string', searchoptions: { sopt: ['bw'] } },
+                { name: 'subCategory', width:200, align: "center",sorttype: 'string',  searchoptions: { sopt: ['bw'] }  },
                 { name: 'uploadDate', width: 150, align: "center", sortable: true, search: false },
                 { name: 'Action', width: 70, align: "center", sortable: false, search: false }
             ],
@@ -41,8 +41,8 @@
                 for (var i = 0; i < ids.length; i++) {
                     var cl = ids[i];
                     var row = $(this).getRowData(cl);
-                    var be = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Editar categoría\" onclick=\"window.upsert('" + cl + "');\"><span class=\"glyphicon glyphicon-edit\"></span></a>";
-                    be += "&nbsp;&nbsp;<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Eliminar categoría\" onclick=\"window.delete('" + cl + "');\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
+                    var be = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Editar marca\" onclick=\"window.upsert('" + cl + "');\"><span class=\"glyphicon glyphicon-edit\"></span></a>";
+                    be += "&nbsp;&nbsp;<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Eliminar marca\" onclick=\"window.delete('" + cl + "');\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
                     $(this).jqGrid('setRowData', ids[i], { Action: be });
                 }
             },

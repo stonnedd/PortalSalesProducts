@@ -1,0 +1,65 @@
+﻿@html.extend("/shared/layout", function(model){
+    @html.block("scripts", function(model){
+<link href="/css/blurMenu.css" rel="stylesheet">
+    })
+    @html.block("body", function(model){
+
+<div class="heads" style="background: url(/images/titleBackground4.jpg) center center;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2><span>@model.title</span></h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div>
+    @if(model.title!='Outlet'){
+    <ul class="BlurMenu">
+        <li ng-repeat="brand in brands"><a href='/@model.title/brand/{{brand.name}}'> {{brand.name}} </a></li>
+    </ul>
+    }
+
+</div>
+
+
+<div>
+    <div id="catalogue">
+        <div class="row">
+            <div class="col-sm-9">
+                <ul>
+                    <li ng-repeat="subCategoty in subCategories" class="col-md-3 col-sm-3">
+                        <div class="img-thumbnail">
+                            <a>
+                                <img src="{{subCategory.ImgPath}}" height="200px" width="200px" alt="" />
+                            </a>
+                            <div class="caption-details">
+                                <p>
+                                    <div class="btn-group">
+                                        <a href='/@model.title/{{subCategory.name}}' class="btn btn-primary"><i class="fa"></i> {{subCategory.name}}</a>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-2 col-sm-3">
+                <div class="row sidebar">
+                    <div class="col-md-12">
+                        <h3>Productos</h3>
+                        <ul class="nav nav-pills nav-stacked">
+                            <li ng-repeat="subCategoty in subCategories">
+                                <a href='/@model.title/{{subCategory.name}}' style="text-align: left"> {{subCategory.name}} </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    })
+})

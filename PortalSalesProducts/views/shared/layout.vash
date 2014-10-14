@@ -19,7 +19,7 @@
 </head>
 <body ng-app="ecommerceApp">
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="menuController"
-         ng-init='categories = [@model.categories]'>
+         ng-init='categories = [@model.categories]; subCategories = [@model.subCategories]; brands = [@model.brands]'>
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav nav-left">
                     <li ng-repeat="category in categories">
-                        <a href="">{{category.name}}</a>
+                        <a href="/{{category.name}}">{{category.name}}</a>
                     </li>
                 </ul>
                 <a href="/index" class="logo visible-lg visible-md"><img src="/images/logoVandalos.png" alt="Vandalos"></a>
@@ -101,7 +101,8 @@
     <script src="/js/common.js"></script>
     <script src="/js/app/shared/ecommerceApp.js"></script>
     <script src="/js/app/shared/menuCtrl.js"></script>
-
+    <script src="/js/app/ecommerce/productsCtrl.js"></script>
+    
     <script src="/lib/angular/angular.js" charset="utf-8"></script>
     <script src="/lib/angular-upload/angular-upload.js"></script>
 

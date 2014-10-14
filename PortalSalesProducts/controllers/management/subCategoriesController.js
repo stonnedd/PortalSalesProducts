@@ -1,7 +1,7 @@
 ﻿var authSvc = require("../../services/account/auth.js");
 var SubCategoryModel = require("../../models/ecommerce/subCategoryModel.js");
 var jqgridUtil = require("../../infrastructure/jqgrid/jqgridUtil.js");
-var catCatalogSvc = require("../../services/management/categoryService.js");
+var CatalogSvc = require("../../services/management/catalogService.js");
 var uploadCtrl = require("../../controllers/management/uploadController.js");
 var subCategoriesController = {};
 
@@ -19,7 +19,7 @@ subCategoriesController.init = function (app,categories) {
     
     app.get("/management/subCategories/upsert", authSvc.checkAuth, function (req, res) {
         
-        catCatalogSvc.getCategories(function (err, result) {
+        CatalogSvc.getCategories(function (err, result) {
             if (err) {
                 res.json({ msg: "No hay datos en el sistema" });
             } else {
