@@ -10,7 +10,7 @@ confirmService.doConfirm = function(params, next) {
         if (err) {
             next("No se encontró el producto");
         } else {
-            emailSvc.sendConfirmation(params, product, function (err) {
+            emailSvc.sendConfirmation(params, product, function (error) {
                 if (error) {
                     next("No fue posible enviar el correo. Por favor intente del nuevo");
                 } else {

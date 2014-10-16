@@ -47,7 +47,7 @@
                                             </div>
                                             <div class="col-xs-7 element-left">
                                                 <input class="form-control" data-val="true"
-                                                       data-val-required="Posición un campo requerido"
+                                                       data-val-required="Posición es un campo requerido"
                                                        id="position" name="position"
                                                        type="number" ng-model="m.position"
                                                        ng-init="m.position = @(model.position == undefined ? '\'\'' : model.position)" />

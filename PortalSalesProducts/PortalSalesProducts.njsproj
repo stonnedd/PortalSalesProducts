@@ -90,6 +90,7 @@
     <Compile Include="utils\uuid.js" />
     <Content Include="public\css\btnUpload.min.css" />
     <Content Include="public\images\emptyImg.png" />
+    <Content Include="services\ecommerce\email.html" />
     <Content Include="views\ecommerce\categoriesMenu.vash" />
     <Content Include="views\ecommerce\contact.vash" />
     <Content Include="views\ecommerce\detail.vash" />

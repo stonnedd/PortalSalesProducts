@@ -1,16 +1,19 @@
 ﻿@html.extend("/shared/layout", function(model){
     @html.block("css", function(model){
 
-    <link href="/css/blurMenu.css" rel="stylesheet">
-    <link href="/css/picSize.css" rel="stylesheet">
+<link href="/css/blurMenu.css" rel="stylesheet">
+<link href="/css/picSize.css" rel="stylesheet">
 
     })
     @html.block("scripts", function(model){
-    <script src="/js/app/ecommerce/detailCtrl.js"></script>
+<script src="/js/jquery.validate.min.js"></script>
+<script src="/js/jquery.validate.unobtrusive.min.js"></script>
+<script src="/js/app/ecommerce/detailCtrl.js"></script>
     })
     @html.block("body", function(model){
+
 <div ng-controller="detailController">
-    <div ng-init="product = @model.product; brands = [@model.brands]; stringId = '@model.stringId'" >
+    <div ng-init="product = @model.product; brands = [@model.brands]; stringId = '@model.stringId'">
         <div class="heads" style="background: url(/images/titleBackground3.jpg) center center;">
             <div class="container">
                 <div class="row">
@@ -24,128 +27,165 @@
             <h5></h5>
         </div>    <!-- begin:product-sidebar -->
 
-        <div class="row">
-            <div class="col-md-9 col-sm-9 single-item">
-                <div class="row">
-                    <div class="col-md-5 col-sm-5">
-                        <div id="itemsingle" class="carousel slide clearfix">
+        <form id="confirmForm" role="form" novalidate="novalidate">
 
-                            <div class="carousel-inner">
-                                <div class="widget-tags">
-                                    <img height="400" ng-src="/images/products/{{product.imgPath}}" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-7 col-sm-7">
-                        <h4>{{product.model}}</h4>
-                        <h4>{{product.brand}}</h4>
-                        <h3>{{product.color}}</h3>
-                        <p>{{product.size}}</p>
-                        <h6></h6>
-                        <p>{{product.description}}</p>
-                        <p>Item Code : {{stringId}}<span class="label label-info"></span></p>
-                        <h4>${{product.price}}</h4>
-                        <!--<p><a href="#" class="btn btn-primary" ><i class="fa fa-shopping-cart"></i> Confirmar</a></p>-->
-                        <p># disponibles : <span class="label label-danger">{{product.quantity}}</span></p>
-                        <button class="btn btn-success btn-lg  " data-toggle="modal" data-target="#myModal">
-                            <i class="fa fa-shopping-cart"></i> Confirmar</>
-                        </button>
+            <div class="row">
+                <div class="col-md-9 col-sm-9 single-item">
+                    <div class="row">
+                        <div class="col-md-5 col-sm-5">
+                            <div id="itemsingle" class="carousel slide clearfix">
 
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title" id="myModalLabel">Confirmación de pedido</h4>
-                        </div>
-                        <div class="modal-body">
-
-                            <div class="panel panel-success">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Producto</h3>
-                                </div>
-                                <div class="panel-body ">
-                                    <h5>{{product.name}}: {{product.model}}, {{product.brand}},&nbsp{{product.color}},&nbsp{{product.size}} </h5>
-                                    <h5></h5>
-                                    <p>{{product.description}}</p>
-                                </div>
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Precio</h3>
-                                </div>
-                                <div class="panel-info">
-                                    <h3>&nbsp&nbsp$ {{product.price}}</h3>
-                                </div>
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Seleccione la cantidad:</h3>
-                                </div>
-                                <div class="panel-info, panel-primary">
-                                    <input class="form-control" type="number" name="points" min="0" max={{product.quantity}}>
-                                </div>
-
-                            </div>
-
-                            <div class="panel panel-warning">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Por favor ingrese sus datos</h3>
-                                </div>
-                                <div class="panel-body ">
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input ng-model="fullname" type="text" class="form-control" placeholder="Nombre completo">
-                                    </div>
-                                    <div class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-                                        <input ng-model="email" type="text" class="form-control" placeholder="Correo electrónico">
+                                <div class="carousel-inner">
+                                    <div class="widget-tags">
+                                        <img height="400" ng-src="/images/products/{{product.imgPath}}" alt="" />
                                     </div>
                                 </div>
                             </div>
-
-
-                            <div class="panel panel-danger">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Formas de pago</h3>
-                                </div>
-                                <div class="panel-body ">
-                                    <h5>Numero de cuenta: </h5>
-                                    <h5>Banco:</h5>
-                                    <h5>Nombre:</h5>
-                                </div>
-                            </div>
-                            <div ng-show="msgError" class="alert alert-danger element-center error-font">
-                                {{msgError}}
-                            </div>
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" ng-init="urlToReturn='/index';" ng-click="confirmPurchase('/confirmPurchase');">Confirmar</button>
+                        <div class="col-md-7 col-sm-7">
+                            <h4>{{product.model}}</h4>
+                            <h4>{{product.brand}}</h4>
+                            <h3>{{product.color}}</h3>
+                            <p>{{product.size}}</p>
+                            <h6></h6>
+                            <p>{{product.description}}</p>
+                            <p>Item Code : {{stringId}}<span class="label label-info"></span></p>
+                            <h4>${{product.price}}</h4>
+                            <!--<p><a href="#" class="btn btn-primary" ><i class="fa fa-shopping-cart"></i> Confirmar</a></p>-->
+                            <p># disponibles : <span class="label label-danger">{{product.quantity}}</span></p>
+                            <button class="btn btn-success btn-lg  " data-toggle="modal" data-target="#myModal">
+                                <i class="fa fa-shopping-cart"></i> Confirmar</>
+                            </button>
+
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <div>
-                <h5></h5>
-            </div>    <!-- begin:product-sidebar -->
 
-            <div class="col-md-3 col-sm-3">
-                <div class="row sidebar">
-                    <div class="col-md-12">
-                        <h3>Marcas</h3>
-                        <ul class="nav nav-pills nav-stacked">
-                            <li ng-repeat="brand in brands"><a href='/search/{{product.category}}/brand/{{brand.name}}'> {{brand.name}} </a></li>
-                        </ul>
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Confirmación de pedido</h4>
+                            </div>
+                            <div class="modal-body">
+
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Información del producto</h3>
+                                    </div>
+
+                                    <div class="panel-body">
+                                        Seleccione la cantidad:
+                                        <input ng-init="quantity=1;" ng-model="quantity" class="form-control-static" type="number"
+                                               min="1" max={{product.quantity}} data-val="true" style="text-align:center"
+                                               data-val-required="Por favor seleccione una cantidad"
+                                               id="quantity" name="quantity">
+                                        <div class="col-xs-9 col-xs-offset-3">
+                                            <span class="field-validation-valid" data-valmsg-for="quantity"
+                                                  data-valmsg-replace="true"></span>
+                                        </div>
+                                        <br />
+                                        <br />
+
+                                        <h3 class="panel-title" style="font-weight:bold">
+                                            Producto: {{product.name}}&nbsp&nbsp&nbsp&nbsp
+                                            Modelo: {{product.model}}&nbsp&nbsp&nbsp&nbsp
+                                            Talla: {{product.size}}&nbsp&nbsp&nbsp&nbsp
+                                            Color: {{product.color}}&nbsp&nbsp&nbsp&nbsp
+                                        </h3>
+
+                                        <h2 class="panel-success" style="text-align:right; font-weight:bolder" >Total: &nbsp&nbsp$ {{product.price*quantity}}</h2>
+                                        <br />
+
+                                        <p style="font-style:oblique">{{product.description}}</p>
+                                    </div>
+
+                                    
+
+                                </div>
+
+                                <div class="panel panel-primary">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Por favor ingrese sus datos</h3>
+                                    </div>
+                                    <div class="panel-body ">
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                            <input ng-model="fullname" type="text" data-val="true"
+                                                   class="form-control" placeholder="Nombre completo"
+                                                   data-val-length-max="40" data-val-length-min="9"
+                                                   data-val-required="Por favor ingrese un nombre valido"
+                                                   id="fullNameParam" name="fullNameParam">
+                                        </div>
+
+                                        <div class="col-xs-9 col-xs-offset-3">
+                                            <span class="field-validation-valid" data-valmsg-for="fullNameParam"
+                                                  data-valmsg-replace="true"></span>
+                                        </div>
+
+                                        <div class="input-group">
+                                            <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                            <input ng-model="email" type="email" data-val="true"
+                                                   class="form-control" placeholder="email@example.com"
+                                                   data-val-length-max="40" data-val-length-min="9"
+                                                   data-val-required="Por favor ingrese su correo electrónico"
+                                                   id="emailParam" name="emailParam">
+                                        </div>
+
+                                        <div class="col-xs-9 col-xs-offset-3">
+                                            <span class="field-validation-valid" data-valmsg-for="emailParam"
+                                                  data-valmsg-replace="true"></span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+
+                                <div class="panel panel-success">
+                                    <div class="panel-heading">
+                                        <h3 class="panel-title">Formas de pago</h3>
+                                    </div>
+                                    <div class="panel-body ">
+                                        <h5>Los métodos de pago serán enviados a tu correo electrónico </h5>
+                                    </div>
+                                </div>
+                                <div ng-show="msgError" class="alert alert-danger element-center error-font">
+                                    {{msgError}}
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" ng-disabled="working==true" ng-init="urlToReturn='/index'" ng-click="confirmPurchase('#confirmForm','/confirmPurchase');">Confirmar</button>
+                            </div>
+                        </div>
                     </div>
+                </div>
+
+                <div>
+                    <h5></h5>
+                </div>    <!-- begin:product-sidebar -->
+
+                <div class="col-md-3 col-sm-3">
+                    <div class="row sidebar">
+                        <div class="col-md-12">
+                            <h3>Marcas</h3>
+                            <ul class="nav nav-pills nav-stacked">
+                                <li ng-repeat="brand in brands"><a href='/search/{{product.category}}/brand/{{brand.name}}'> {{brand.name}} </a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="blocker" ng-show="working">
+                <div>
+                    Procesando por favor espere...<img src="/images/ajax_loader.gif" alt="" />
                 </div>
             </div>
 
-        </div>
-
+        </form>
     </div>
 </div>
 
