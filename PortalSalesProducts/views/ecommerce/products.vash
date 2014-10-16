@@ -1,50 +1,43 @@
 ﻿@html.extend("/shared/layout", function(model){
     @html.block("scripts", function(model){
-    jquery-1.10.1.min.js"></script>
-    <script type="text/javascript" src="/js/jquery.mousewheel-3.0.6.pack.js"></script>
-    <script type="text/javascript" src="/js/jquery.fancybox.js?v=2.1.5"></script>
-    <link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=2.1.5" media="screen" />
-    <link rel="stylesheet" type="text/css" href="/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
-    <script type="text/javascript" src="/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
-    <link rel="stylesheet" type="text/css" href="/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
-    <script type="text/javascript" src="/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
-    <script type="text/javascript" src="/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
-    <script type="text/javascript" src="/js/
+<script type="text/javascript" src="/js/jquery.mousewheel-3.0.6.pack.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.js?v=2.1.5"></script>
+<link rel="stylesheet" type="text/css" href="/css/jquery.fancybox.css?v=2.1.5" media="screen" />
+<link rel="stylesheet" type="text/css" href="/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+<script type="text/javascript" src="/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+<link rel="stylesheet" type="text/css" href="/helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+<script type="text/javascript" src="/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+<script type="text/javascript" src="/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
 
-    <script type=" text />javascript">
-        $(document).ready(function() {
-            $(".fancybox").fancybox();
-        });
-    </script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".fancybox").fancybox();
+    });
+</script>
 
-    <link href="/css/blurMenu.css" rel="stylesheet">
-    <link href="/css/picSize.css" rel="stylesheet">
+<link href="/css/blurMenu.css" rel="stylesheet">
+<link href="/css/picSize.css" rel="stylesheet">
 
     })
     @html.block("body", function(model){
 
-
+<div ng-init='products = @model.products; brands = [@model.brands]'>
     <!-- begin:heading -->
     <div class="heads" style="background: url(/images/titleBackground1.jpg) center center;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2><span>@title</span></h2>
+                    <h2><span>@model.title</span></h2>
                 </div>
             </div>
         </div>
     </div>
 
     <div>
-        @if (title!='Outlet'){
+        @if(model.title!="OUTLET"){
         <ul class="BlurMenu">
-             @brands.forEach(function(brand){
-            <li><a href='/<@category/brand/@brand.name'>@brand.name</a></li>
-             })
+            <li ng-repeat="brand in brands"><a href='/search/@model.category/brand/{{brand.name}}'> {{brand.name}} </a></li>
         </ul>
-        } else {
-
-
         }
 
     </div>
@@ -53,40 +46,47 @@
         <div id="catalogue">
             <div class="row">
                 <div class="col-md-12">
-                    @products.forEach(function(product){ 
-                    <li class="col-md-3 col-sm-3">
-                        <div class="img-thumbnail">
-                            <a class="fancybox" href="/@product.imgPath1" data-fancybox-group="@product.category">
-                                <img src="/@product.imgPath1" height="170px" alt="" />
-                            </a>
-                            <div class="caption-details">
-                                <h4><a href="detail.html">@product.model</a></h4>
-                                <h5><a href="detail.html">@product.brand</a></h5>
-                                <p>
-                                    <div class="btn-group">
-                                <p class="btn btn-default">$ @product.price</p>
-                                <a href='/product/detail/@product.id' class="btn btn-primary"><i class="fa fa-shopping-cart"></i>comprar</a>
+                    <ul>
+                        <li ng-repeat="product in products" class="col-md-3 col-sm-3">
+                            <div class="img-thumbnail">
+                                <a class="fancybox" href="/images/products/{{product.imgPath}}" data-fancybox-group="{{product.category}}">
+                                    <img ng-src="/images/products/{{product.imgPath}}" height="170" alt="" />
+                                </a>
+                                <div class="caption-details">
+                                    <h4><a>{{product.model}}</a></h4>
+                                    <h5><a>{{product.brand}}</a></h5>
+                                    <p>
+                                </div>
+                                <div class="btn-group">
+                                    <p class="btn btn-default">$ {{product.price}}</p>
+                                    <a href='/category/{{product.category}}/detail/{{product.id}}' class="btn btn-primary"><i class="fa fa-shopping-cart"></i>&nbsp;&nbsp;comprar</a>
+                                </div>
                             </div>
-                            </p>
-                        </div>
-                </div><x></x>
-                </li>
-                 }) 
-                </ul>
+                            <br />
+                            <br />
+                        </li>
 
-                <ul class="pagination">
-                    <li class="disabled"><a href="#">Page 1 of 2</a></li>
-                    <li class="disabled"><a href="#">&laquo;</a></li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                </ul>
+                    </ul>
+                </div>
+                <div>
+                    <ul class="pagination" ng-init="totalProd = @model.total; page = @model.page; rows = @model.rows; totalPage = @model.totalPage;">
+                        <li class="disabled">
+                            <a href="">Página {{page}} de {{totalPage}}</a>
+                        </li>
+                        <li ng-class="(page===1 ? 'disabled' : '')"><a href="{{(page===1 ? '' : '?page='+(page-1))}}">&laquo;</a></li>
+                        <li ng-repeat="n in [] | range:totalPage" ng-class="(page===n ? 'active' : '')">
+                            <a href="?page={{n}}">{{n}}</a>
+                        </li>
+                        <li ng-class="(page===totalPage ? 'disabled' : '')">
+                            <a href="{{(page===totalPage ? '' : '?page='+(page+1))}}">&raquo;</a>
+                        </li>
+
+                    </ul>
+                </div>
+
             </div>
         </div>
     </div>
-    <!-- end:product -->
-    </div>
+</div>
+    })
 })

@@ -17,9 +17,9 @@
     <link href="/lib/angularjs/angular-csp.css" rel="stylesheet" />
     @html.block("css")
 </head>
-<body ng-app="ecommerceApp">
+<body ng-app="ecommerceApp" ng-cloak>
     <nav class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="menuController"
-         ng-init='categories = [@model.categories]; subCategories = [@model.subCategories]; brands = [@model.brands]'>
+         ng-init='categories = [@model.categories]'>
         <div class="container">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
@@ -34,13 +34,13 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav nav-left">
                     <li ng-repeat="category in categories">
-                        <a href="/{{category.name}}">{{category.name}}</a>
+                        <a href="/category/{{category.name}}">{{category.name}}</a>
                     </li>
                 </ul>
                 <a href="/index" class="logo visible-lg visible-md"><img src="/images/logoVandalos.png" alt="Vandalos"></a>
                 <div id="brand" class="visible-lg visible-md">&nbsp;</div>
                 <ul class="nav navbar-nav nav-right">
-                    <li><a href="/otros">Otros</a></li>
+                    <li><a href="/category/otros">Otros</a></li>
                     <li><a href="/outlet">OUTLET</a></li>
                     <li><a href="/contact">Contacto</a></li>
                     <li><a href="#">Comentarios</a></li>
@@ -57,18 +57,16 @@
                         <h3>Vandalos Skatebording</h3>
                         <p>slogan.</p>
                         <ul class="list-unstyled social-icon">
-                            <li><a href="#" rel="tooltip" title="Facebook" class="icon-facebook"><span><i class="fa fa-facebook-square"></i></span></a></li>
-                            <li><a href="#" rel="tooltip" title="Twitter" class="icon-twitter"><span><i class="fa fa-twitter"></i></span></a></li>
+                            <li><a href="https://www.facebook.com/vandalos.skateboard" rel="tooltip" title="Facebook" class="icon-facebook"><span><i class="fa fa-facebook-square"></i></span></a></li>
+                            <li><a href="https://twitter.com/vandalosk8" rel="tooltip" title="Twitter" class="icon-twitter"><span><i class="fa fa-twitter"></i></span></a></li>
                             <li><a href="#" rel="tooltip" title="Linkedin" class="icon-linkedin"><span><i class="fa fa-linkedin"></i></span></a></li>
-                            <li><a href="#" rel="tooltip" title="Instagram" class="icon-gplus"><span><i class="fa fa-google-plus"></i></span></a></li>
+                            <li><a href="#" rel="tooltip" title="google +" class="icon-gplus"><span><i class="fa fa-google-plus"></i></span></a></li>
                             <li><a href="#" rel="tooltip" title="Instagram" class="icon-instagram"><span><i class="fa fa-instagram"></i></span></a></li>
                         </ul>
                         <div class="sitemap">
                             <ul>
-                                <li><a href="index">HOME</a></li>
-                                <li><a href="about">ABOUT</a></li>
-                                <li><a href="profile">PROFILE</a></li>
-                                <li><a href="contact">CONTACT</a></li>
+                                <li><a href="/index">HOME</a></li>
+                                <li><a href="/category/contact">CONTACT</a></li>
                             </ul>
                         </div>
                     </div>
@@ -102,7 +100,7 @@
     <script src="/js/app/shared/ecommerceApp.js"></script>
     <script src="/js/app/shared/menuCtrl.js"></script>
     <script src="/js/app/ecommerce/productsCtrl.js"></script>
-    
+    <script src="/js/app/ecommerce/categoriesMenuCtrl.js"></script>
     <script src="/lib/angular/angular.js" charset="utf-8"></script>
     <script src="/lib/angular-upload/angular-upload.js"></script>
 

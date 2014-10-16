@@ -1,0 +1,122 @@
+﻿@html.extend("/shared/layout", function(model){
+    @html.block("scripts", function(model){
+    
+    <link href="/css/blurMenu.css" rel="stylesheet">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        html {
+            height: 100%;
+        }
+
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #map_canvas {
+            height: 100%;
+        }
+    </style>
+    <script type="text/javascript"
+            src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBtPU42da89ZmR4SZpCl8LQfr66XUh3x6g&sensor=SET_TO_TRUE_OR_FALSE">
+    </script>
+    <script type="text/javascript">
+        function initialize() {
+
+            var mapOptions1 = {
+                center: new google.maps.LatLng(19.562577, -99.245123),
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map1 = new google.maps.Map(document.getElementById("map_canvas1"),
+                    mapOptions1);
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(19.562577, -99.245123),
+                map: map1
+            });
+
+            var mapOptions2 = {
+                center: new google.maps.LatLng(19.539761, -99.192535),
+                zoom: 16,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map2 = new google.maps.Map(document.getElementById("map_canvas2"),
+                    mapOptions2);
+            var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(19.539761, -99.192535),
+                map: map2
+            });
+
+        }
+    </script>
+    })
+
+
+    @html.block("body", function(model){
+    
+    <body onload="initialize()">
+        <div class="heads" style="background: url(/images/titleBackground.jpg) center center;">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2><span>@model.title</span></h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="alert-info" style="text-center">
+            <h1></h1>
+            <h3>Dudas o aclaraciones</h3>
+            <h5>Correo: vandalosk8@gmail.com</h5>
+            <h5>Tel: (015) 5077 3688 ​</h5>
+        </div>
+
+        <div>
+            <ul class="BlurMenu">
+                <li><a>Tienda Atizapán</a></li>
+            </ul>
+        </div>
+
+        <div class="page-content contact">
+            <div class="row padd20-top-btm">
+                <div class="col-md-5 col-sm-5">
+                    <textarea class="text-center fa-font" rows="13" cols="75">
+                        Vandalos Skate - Atizapán -
+                        Calz. San Mateo # 8, Atizapn Centro
+                        Estado de México, Cp. 52940.
+                        Tel: (015) 5077 3688
+                    </textarea>
+                </div>
+                <div class="col-md-7 col-sm-7" id="map_canvas1" style="height: 300px;">
+                </div>
+            </div>
+        </div>
+
+        <div>
+            <ul class="BlurMenu">
+                <li><a>Tienda Tlalnepantla</a></li>
+            </ul>
+        </div>
+
+
+        <div class="page-content contact">
+            <div class="row padd20-top-btm">
+                <div class="col-md-5 col-sm-5">
+                    <textarea class="text-center fa-font" rows="13" cols="75">
+                        Vandalos Skate - Tlalnepantla -
+                        Priv. porfirio diaz #8
+                        Tlalnepantla Centro
+                        Estado de México​, Cp. 54000
+                        Tel (015) 2451 9038
+                    </textarea>
+                </div>
+                <div class="col-md-7 col-sm-7" id="map_canvas2" style="height: 300px;">
+                </div>
+            </div>
+        </div>
+    </body>    
+    })
+})

@@ -19,10 +19,11 @@ catalogService.getCatalogs = function (param, next) {
         });
     },
         function (callback) {
-        subCategoryModel.find({ category: param }).select({ _id: 0, name: 1 }).sort('name').exec(function (err, subCategories) {
+        subCategoryModel.find({ category: param }).select({_id: 0, name: 1, imgPath: 1})
+            .sort('name').exec(function (err, subCategories) {
             if (err) {
                 callback(err);
-            }
+            }   
             else {
                 callback(null, subCategories);
             }

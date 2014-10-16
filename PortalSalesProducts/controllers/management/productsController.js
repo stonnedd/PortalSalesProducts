@@ -6,6 +6,22 @@ var productsController = {};
 
 productsController.init = function (app) {
     
+    /*    var product = new ProductModel({
+        name: "deck",
+        category: "Skate",
+        subcategory: "Decks",
+        model: "TonyHawk",
+        brand: "birdhouse",
+        size: "xx",
+        price: 501,
+        description: "algo",
+        color : "azul",
+        quantity: 2,
+        imgPath: "4ce29ba5-7bd4-de6f-1a5e-77807d0173dd.jpg",
+        isOutlet: false
+    });
+
+    product.save();    */
     
     app.get("/management/products", authSvc.checkAuth, function (req, res) {
         res.render("management/products", { user: req.user });
@@ -24,7 +40,8 @@ productsController.init = function (app) {
                     description: 1,
                     color : 1,
                     quantity:1,
-                    imgPath1: 1,
+                    imgPath: 1,
+                    isOutlet:1
         };
         jqgridUtil.doQuery(req, res, ProductModel, toSelect);
     });

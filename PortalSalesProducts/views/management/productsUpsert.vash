@@ -272,7 +272,7 @@
                                             <img ng-src="{{m.image}}"
                                                  ng-model="m.image"
                                                  ng-init="m.image = '@(model.imgPath ? model.imgPath :'/images/emptyImg.png')'"
-                                                 width="200" height="200" />
+                                                 height="170" />
                                         </div>
                                     </div>
                                 </div>

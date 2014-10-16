@@ -23,7 +23,7 @@ uploadController.init = function (app, dirname) {
                     pathExtension = '/banners';
                     break;                
             default: 
-                    pathExtension = '';
+                    pathExtension = '/';
             }
             var fileExt = file.name.split('.').pop();
             var uploadPath = path.resolve(dirname + '/public/images' + pathExtension);

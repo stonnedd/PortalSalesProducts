@@ -19,7 +19,7 @@
             mtype: 'POST',
             colNames: ['ID', 'Nombre','Categoría', 'Subcategorias', 'Modelo', 'Marca','Talla','Precio','OUTLET','Acci&oacute;n'],
             colModel: [
-                { name: 'id', index: 'id', sorttype: 'string', searchoptions: { sopt: ['bw'] } },
+                { name: 'id', index: 'id', hidden: true },
                 { name: 'name', width: 140, align: "center", sorttype: 'string', searchoptions: { sopt: ['bw'] } },
                 { name: 'category', width: 140, align: "center", sorttype: 'string', searchoptions: { sopt: ['bw'] } },
                 { name: 'subcategory', width: 140, align: "center", sorttype: 'string', sortable: true, },
@@ -27,7 +27,7 @@
                 { name: 'brand', width: 140, align: "center", sortable: true, search: false },
                 { name: 'size', width: 100, align: "center", sortable: true, search: false },
                 { name: 'price', width: 100, align: "center", sortable: true, search: false },
-                { name: 'isOutlet', width: 100, align: "center", sorttype:'boolean',sortable: true, search: false },
+                { name: 'isOutlet', width: 100, align: "center", sortable: false, search: false },
                 { name: 'Action', width: 70, align: "center", sortable: false, search: false }
             ],
             rowNum: 10,
@@ -48,6 +48,13 @@
                     var be = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Editar producto\" onclick=\"window.upsert('" + cl + "');\"><span class=\"glyphicon glyphicon-edit\"></span></a>";
                     be += "&nbsp;&nbsp;<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"Eliminar categoría\" onclick=\"window.delete('" + cl + "');\"><span class=\"glyphicon glyphicon-trash\"></span></a>";
                     $(this).jqGrid('setRowData', ids[i], { Action: be });
+
+                    if (row.isOutlet == 'true') {
+                        be = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"OUTLET\" \"><span class=\"glyphicon glyphicon-ok\"></span></a>";
+                    } else {
+                        be = "<a href=\"javascript:;\" style=\"display:inline-block;\" title=\"NO OUTLET\" \"><span class=\"glyphicon glyphicon-ban-circle\"></span></a>";
+                    }
+                    $(this).jqGrid('setRowData', ids[i], { isOutlet: be });
                 }
             },
             loadComplete: function () {
