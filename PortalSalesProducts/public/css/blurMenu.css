@@ -5,6 +5,7 @@
     position: relative;
     min-height: 30px;
     height: auto;
+    overflow: auto;
     border: 1px #333 solid;
     border-radius:2px;
     -moz-border-radius:8px;
