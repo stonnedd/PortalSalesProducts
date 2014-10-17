@@ -7,15 +7,15 @@ emailService.sendConfirmation = function(params, product, next) {
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'yonadab.lopez@gmail.com',
-            pass: 'essecreta1'
+            user: 'vandalosk8@gmail.com',
+            pass: 'vandalos'
         }
     });
     
     var mailOptions = {
         from: 'Vandalos Skateboard', // sender address
         to: params.email,
-        bcc: "yonadab.lopez@gmail.com",
+        bcc: "vandalosk8@gmail.com",
         subject: 'Confirmación de pedido ',
         text: '' ,
 
