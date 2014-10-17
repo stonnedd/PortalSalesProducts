@@ -37,7 +37,7 @@ catalogService.getCatalogs = function (param, next) {
             else {
                 callback(null, brands);
             }
-        });
+        }); 
     }], next);
 };
 

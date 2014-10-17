@@ -25,25 +25,21 @@
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Vandalos navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    
                 </button>
                 <a class="navbar-brand visible-xs" href="#"></a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav nav-left">
+                <ul class="nav navbar-nav">
                     <li ng-repeat="category in categories">
                         <a href="/category/{{category.name}}">{{category.name}}</a>
                     </li>
                 </ul>
-                <a href="/index" class="logo visible-lg visible-md"><img src="/images/logoVandalos.png" alt="Vandalos"></a>
+                <a href="/index" class="logo visible-lg visible-lg"><img src="/images/logoVandalos.png" alt="Vandalos"></a>
                 <div id="brand" class="visible-lg visible-md">&nbsp;</div>
                 <ul class="nav navbar-nav nav-right">
-                    <li><a href="/category/otros">Otros</a></li>
                     <li><a href="/outlet">OUTLET</a></li>
                     <li><a href="/contact">Contacto</a></li>
-                    <li><a href="#">Comentarios</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -54,19 +50,18 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3>Vandalos Skatebording</h3>
-                        <p>slogan.</p>
+                        <h3>Vandalos Skateboard</h3>
+                        <p>Keep on Rollin!</p>
                         <ul class="list-unstyled social-icon">
                             <li><a href="https://www.facebook.com/vandalos.skateboard" rel="tooltip" title="Facebook" class="icon-facebook"><span><i class="fa fa-facebook-square"></i></span></a></li>
                             <li><a href="https://twitter.com/vandalosk8" rel="tooltip" title="Twitter" class="icon-twitter"><span><i class="fa fa-twitter"></i></span></a></li>
-                            <li><a href="#" rel="tooltip" title="Linkedin" class="icon-linkedin"><span><i class="fa fa-linkedin"></i></span></a></li>
-                            <li><a href="#" rel="tooltip" title="google +" class="icon-gplus"><span><i class="fa fa-google-plus"></i></span></a></li>
+                            <li><a href="https://plus.google.com/u/0/+vandalosskateboardTlalnepantla/posts" rel="tooltip" title="google +" class="icon-gplus"><span><i class="fa fa-google-plus"></i></span></a></li>
                             <li><a href="#" rel="tooltip" title="Instagram" class="icon-instagram"><span><i class="fa fa-instagram"></i></span></a></li>
                         </ul>
                         <div class="sitemap">
                             <ul>
                                 <li><a href="/index">HOME</a></li>
-                                <li><a href="/category/contact">CONTACT</a></li>
+                                <li><a href="/contact">CONTACT</a></li>
                             </ul>
                         </div>
                     </div>

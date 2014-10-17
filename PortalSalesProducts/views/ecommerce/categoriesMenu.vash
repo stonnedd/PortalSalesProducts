@@ -8,7 +8,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2><span>@model.title</span></h2>
+                    <h2><span style="text-shadow: 2px 2px 4px #fff;" >@model.title</span></h2>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
     <div>
         @if(model.title!='Outlet'){
         <ul class="BlurMenu">
-            <li ng-repeat="brand in brands"><a href='/search/@model.title/brand/{{brand.name}}'> {{brand.name}} </a></li>
+            <li ng-repeat="brand in brands" style="font-stretch:extra-condensed"><a href='/search/@model.title/brand/{{brand.name}}' style="font-size:small; font-stretch:narrower;" class="glyphicon glyphicon-chevron-right"> {{brand.name}} </a></li>
         </ul>
         }
 
