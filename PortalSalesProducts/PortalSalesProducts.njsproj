@@ -90,8 +90,6 @@
     <Compile Include="utils\uuid.js" />
     <Content Include="public\css\btnUpload.min.css" />
     <Content Include="public\images\emptyImg.png" />
-    <Content Include="public\images\logoVandalos1.jpg" />
-    <Content Include="public\images\logoVandalos2.jpg" />
     <Content Include="services\ecommerce\email.html" />
     <Content Include="views\ecommerce\categoriesMenu.vash" />
     <Content Include="views\ecommerce\contact.vash" />

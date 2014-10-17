@@ -19,7 +19,7 @@ catalogService.getCategories = function (next) {
             });
         },
         function (callback) {
-            subCategoryModel.find({}, { _id: 0, name: 1 }, function (err, subCategories) {
+            subCategoryModel.find({}, { _id: 0, name: 1, category: 1 }).sort({category:1, name:1}).exec(function (err, subCategories) {
                 if (err) {
                     callback(err);
                 }

@@ -43,54 +43,16 @@
                                     <div class="col-xs-6">
                                         <div class="row">
                                             <div class="col-xs-4 element-right">
-                                                Categorías:
-                                            </div>
-                                            <div class="col-xs-7 element-left" ng-init="categories = [@model.categories]; initSelect(categories, 'category', '@model.category');">
-                                                <div ng-repeat="category in categories">
-                                                    <label>
-                                                        <input type="checkbox"
-                                                               name="selectedCategories[]"
-                                                               value="{{category}}"
-                                                               ng-checked="m['categories'].indexOf(category.name) > -1"
-                                                               ng-click="toggleSelection(category.name, 'categories')" /> {{category.name}}
-                                                    </label>
-                                                    <br />
-                                                </div>
-                                            </div>
-                                            <div class="col-xs-9 col-xs-offset-3">
-                                                <span class="field-validation-valid" data-valmsg-for="position"
-                                                      data-valmsg-replace="true"></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <br />
-                                    <div class="col-xs-6">
-                                        <div class="row">
-                                            <div class="col-xs-4 element-right">
-                                            </div>
-                                            <div class="col-xs-7 element-left">
-                                            </div>
-                                            <div class="col-xs-9 col-xs-offset-3">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6">
-                                        <div class="row">
-                                            <div class="col-xs-4 element-right">
                                                 Subcategorías:
                                             </div>
-                                            <div class="col-xs-7 element-left" ng-init="subCategories = [@model.subCategories]; initSelect(subCategories, 'subCategory', '@model.subCategory');">
+                                            <div class="col-xs-7 element-left" ng-init="subCategories = [@model.subCategories]; initCheckBox(subCategories, 'subCategories', @model.subCatKey);">
                                                 <div ng-repeat="subCategory in subCategories">
-                                                    <label>
+                                                    <span>
                                                         <input type="checkbox"
-                                                               name="selectedSubCategories[]"
                                                                value="{{subCategory}}"
-                                                               ng-checked="m['subCategories'].indexOf(subCategory.name) > -1"
-                                                               ng-click="toggleSelection(subCategory.name, 'subCategories')" /> {{subCategory.name}}
-                                                    </label>
+                                                               ng-checked="indexOf(subCategory, m['subCategories']) > -1"
+                                                               ng-click="toggleSelectionMultiple({name:subCategory.name, category:subCategory.category}, 'subCategories')" /> {{subCategory.category}} / {{subCategory.name}}
+                                                    </span>
                                                     <br />
                                                 </div>
                                             </div>
@@ -105,6 +67,7 @@
                         </div>
                     </div>
                 </div>
+                <br />
 
                 <div class="row">
                     <div class="col-xs-12">

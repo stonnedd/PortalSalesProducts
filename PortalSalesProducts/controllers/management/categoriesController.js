@@ -39,7 +39,7 @@ categoriesController.init = function (app) {
         if (!req.body.id) {
             category.save(function (err, categorySaved) {
                 if (err) {
-                    res.json({ success: false, msg: 'No fue posible guardar la información' });
+                    res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una subcategoría con el mismo nombre.' });
                 } else {
                     res.json({ success: true });
                 }
@@ -49,7 +49,7 @@ categoriesController.init = function (app) {
             delete category._id;
             CategoryModel.update({ _id: req.body.id }, category, { upsert: true }, function (err) {
                 if (err) {
-                    res.json({ success: false, msg: 'No fue posible guardar la información' });
+                    res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una subcategoría con el mismo nombre.' });
                 } else {
                     res.json({ success: true });
                 }
