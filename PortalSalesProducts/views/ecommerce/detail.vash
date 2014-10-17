@@ -61,7 +61,6 @@
                     </div>
                 </div>
 
-
                 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -101,9 +100,6 @@
 
                                         <p style="font-style:oblique">{{product.description}}</p>
                                     </div>
-
-                                    
-
                                 </div>
 
                                 <div class="panel panel-primary">
@@ -156,7 +152,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-default" ng-disabled="working==true" ng-click="modal" data-dismiss="modal">Cancelar</button>
                                 <button type="button" class="btn btn-primary" ng-disabled="working==true" ng-init="urlToReturn='/index'" ng-click="confirmPurchase('#confirmForm','/confirmPurchase');">Confirmar</button>
                             </div>
                         </div>
