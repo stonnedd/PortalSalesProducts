@@ -57,6 +57,8 @@
     <Compile Include="public\helpers\jquery.fancybox-buttons.js" />
     <Compile Include="public\helpers\jquery.fancybox-media.js" />
     <Compile Include="public\helpers\jquery.fancybox-thumbs.js" />
+    <Compile Include="public\js\alertify.js" />
+    <Compile Include="public\js\alertify.min.js" />
     <Compile Include="public\js\app\account\loginCtrl.js" />
     <Compile Include="public\js\app\ecommerce\categoriesMenuCtrl.js" />
     <Compile Include="public\js\app\ecommerce\detailCtrl.js" />
@@ -88,6 +90,9 @@
     <Compile Include="services\ecommerce\detailService.js" />
     <Compile Include="services\management\subCategoryService.js" />
     <Compile Include="utils\uuid.js" />
+    <Content Include="public\css\alertify.bootstrap.css" />
+    <Content Include="public\css\alertify.core.css" />
+    <Content Include="public\css\alertify.default.css" />
     <Content Include="public\css\btnUpload.min.css" />
     <Content Include="public\images\emptyImg.png" />
     <Content Include="services\ecommerce\email.html" />

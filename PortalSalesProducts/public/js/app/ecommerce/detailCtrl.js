@@ -38,13 +38,22 @@
     
     $scope.onSuccess = function (res) {
         if (res.data.success) {
-            $scope.returnPage();
+            $scope.alertDialog();
+            
         } else {
             $scope.msgError = res.data.msg;
         }
         $scope.working = false;
         
     };
+    
+
+    $scope.alertDialog= function () {
+        alertify.alert("Tu pedido se procesó con exito, los metodos de pago fueron enviados a tu correo electrónico", function(e) {
+            $scope.returnPage();
+        });
+    };
+
 
 });
 

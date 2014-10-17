@@ -2440,7 +2440,7 @@ div.blocker {
     height: 100%;
     opacity: .5;
     background-color: #000;
-    z-index: 1000;
+    z-index: 10000;
     overflow: auto;
 }
 
