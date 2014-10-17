@@ -3,7 +3,6 @@
 
 <link href="/css/blurMenu.css" rel="stylesheet">
 <link href="/css/picSize.css" rel="stylesheet">
-
     })
     @html.block("scripts", function(model){
 <script src="/js/jquery.validate.min.js"></script>
@@ -76,6 +75,14 @@
                                     </div>
 
                                     <div class="panel-body">
+                                        <h3 class="panel-title" style="font-weight:bold">
+                                            Producto: {{product.name}}&nbsp&nbsp&nbsp&nbsp
+                                            Modelo: {{product.model}}&nbsp&nbsp&nbsp&nbsp
+                                            Talla: {{product.size}}&nbsp&nbsp&nbsp&nbsp
+                                            Color: {{product.color}}&nbsp&nbsp&nbsp&nbsp
+                                        </h3>
+                                        <br />
+
                                         Seleccione la cantidad:
                                         <input ng-init="quantity=1;" ng-model="quantity" class="form-control-static" type="number"
                                                min="1" max={{product.quantity}} data-val="true" style="text-align:center"
@@ -85,20 +92,46 @@
                                             <span class="field-validation-valid" data-valmsg-for="quantity"
                                                   data-valmsg-replace="true"></span>
                                         </div>
+                                        <br/>
+                                        <h3 class="panel-success" style="text-align:right; font-weight:bolder">Subtotal: &nbsp;&nbsp;$ {{product.price*quantity}}</h3>
                                         <br />
+                                        Seleccione envío:
+                                        <br/>
+                                            
+                                        <table class="tg" ng-init="fee1=50.00; fee2=100.00; fee3=150.00; cbfee=fee1;">
+                                            <tr>
+                                                <td class="tg-031e">metodo de pago uno &nbsp;&nbsp;&nbsp;&nbsp;</td><td>${{fee1}}</td>
+                                                <td class="tg-031e">
+                                                    &nbsp;&nbsp;<input type="radio" name="shippingMetod" value="{{fee1}}"
+                                                                       ng-model="cbfee" data-val="true"
+                                                                       data-val-required="Por favor seleccione un método de envío" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-031e">metodo de pago dos&nbsp;&nbsp;&nbsp;&nbsp;</td><td>${{fee2}}</td>
+                                                <td class="tg-031e">
+                                                    &nbsp;&nbsp;<input type="radio" name="shippingMetod" value="{{fee2}}"
+                                                                       ng-model="cbfee" data-val="true"
+                                                                       data-val-required="Por favor seleccione un método de envío" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="tg-031e">metodo de pago tres&nbsp;&nbsp;&nbsp;&nbsp;</td><td>${{fee3}}</td>
+                                                <td class="tg-031e">
+                                                    &nbsp;&nbsp;<input type="radio" name="shippingMetod" value="{{fee3}}"
+                                                                       ng-model="cbfee" data-val="true"
+                                                                       data-val-required="Por favor seleccione un método de envío" />
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <div class="col-xs-9 col-xs-offset-3">
+                                            <span class="field-validation-valid" data-valmsg-for="shippingMetod"
+                                                  data-valmsg-replace="true"></span>
+                                        </div>
+
                                         <br />
+                                        <h2 class="panel-success" style="text-align:right; font-weight:bolder" >Total: &nbsp;&nbsp;$ {{product.price*quantity + 1*cbfee}}</h2>
 
-                                        <h3 class="panel-title" style="font-weight:bold">
-                                            Producto: {{product.name}}&nbsp&nbsp&nbsp&nbsp
-                                            Modelo: {{product.model}}&nbsp&nbsp&nbsp&nbsp
-                                            Talla: {{product.size}}&nbsp&nbsp&nbsp&nbsp
-                                            Color: {{product.color}}&nbsp&nbsp&nbsp&nbsp
-                                        </h3>
-
-                                        <h2 class="panel-success" style="text-align:right; font-weight:bolder" >Total: &nbsp&nbsp$ {{product.price*quantity}}</h2>
-                                        <br />
-
-                                        <p style="font-style:oblique">{{product.description}}</p>
                                     </div>
                                 </div>
 

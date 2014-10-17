@@ -21,10 +21,9 @@
             id: $scope.stringId,
             fullname: $scope.fullname,
             email: $scope.email,
-            quantity: $scope.quantity
+            quantity: $scope.quantity,
+            cbfee:$scope.cbfee
         }).then($scope.onSuccess, $scope.onError);
-
-        
     }
     
     $scope.onError = function () {
@@ -44,7 +43,6 @@
             $scope.msgError = res.data.msg;
         }
         $scope.working = false;
-        //alert("Tu pedido se procesó con exito");
         
     };
 

@@ -35,7 +35,7 @@
                         <a href="/category/{{category.name}}">{{category.name}}</a>
                     </li>
                 </ul>
-                <a href="/index" class="logo visible-lg visible-lg"><img src="/images/logoVandalos1.jpg" alt="Vandalos"></a>
+                <a href="/index" class="logo visible-lg visible-lg"><img src="/images/logoVandalosOk.jpg" alt="Vandalos"></a>
                 <div id="brand" class="visible-lg visible-md">&nbsp;</div>
                 <ul class="nav navbar-nav nav-right">
                     <li><a href="/outlet">OUTLET</a></li>

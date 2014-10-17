@@ -12,7 +12,7 @@ confirmService.doConfirm = function(params, next) {
         } else {
             emailSvc.sendConfirmation(params, product, function (error) {
                 if (error) {
-                    next("No fue posible enviar el correo. Por favor intente del nuevo");
+                    next(" No fue posible enviar el correo. Por favor intente de nuevo");
                 } else {
                     next();
                 }

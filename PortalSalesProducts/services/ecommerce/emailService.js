@@ -7,15 +7,17 @@ emailService.sendConfirmation = function(params, product, next) {
     var transporter = nodemailer.createTransport({
         service: 'Gmail',
         auth: {
-            user: 'vandalosk8@gmail.com',
-            pass: 'vandalos'
+            //user: 'vandalosk8@gmail.com',
+            //pass: 'vandalos'
+            user: 'yonadab.lopez@gmail.com',
+            pass: 'essecreta1'
         }
     });
     
     var mailOptions = {
         from: 'Vandalos Skateboard', // sender address
         to: params.email,
-        bcc: "vandalosk8@gmail.com",
+        bcc: "yonadab.lopez@gmail.com",
         subject: 'Confirmación de pedido ',
         text: '' ,
 
@@ -24,6 +26,8 @@ emailService.sendConfirmation = function(params, product, next) {
                 "    <div>\n" +
                 "        <h1 style='text-align: center'>Vandalos Skateboard</h1>\n" +
                 "        <h3 style='text-align: center'>Confirmación de pedido</h3>\n" +
+                "                 <h4 style='text-align: center'>" + params.fullname + "  </h4> \n" +
+                "                 <p style='text-align: center'>" + params.email + "</p>\n" +
                 "        <div style='border: black 4px solid; padding: 30px; margin: auto; width: 600px'>\n" +
                 "            <div>\n" +
                 "                <h3>&nbsp;&nbsp; Información del producto</h3>\n" +
@@ -36,7 +40,9 @@ emailService.sendConfirmation = function(params, product, next) {
                 "                <h3>Color: " + product.color + "  </h3>\n" +
                 "                <h3>Cantidad: " + params.quantity + "</h3>\n" +
                 "                <br />\n" +
-                "                <h2 style='text-align: right'>  Total: $&nbsp;&nbsp; " + product.price*params.quantity + " </h2>\n" +
+                "                <h4 style='text-align: right'>  Subtotal: $&nbsp;&nbsp; " + product.price * params.quantity + " </h4>\n" +
+                "                <h4 style='text-align: right'>  Envio: $&nbsp;&nbsp; " + params.cbfee + " </h4>\n" +
+                "                <h3 style='text-align: right'>  Total: $&nbsp;&nbsp; " + (product.price * params.quantity + 1*params.cbfee) + " </h3>\n" +
                 "                <br />\n" +
                 "                <p>" + product.description + "</p>\n" +
                 "\n" +
