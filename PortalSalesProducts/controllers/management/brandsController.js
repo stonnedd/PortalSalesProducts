@@ -25,12 +25,19 @@ brandsController.init = function (app) {
                         res.render("management/brandsUpsert", {
                             user: req.user,
                             categories: catalog[0],
-                            subCategories: catalog[1]
+                            subCategories: catalog[1],
+                            subCatKey: JSON.stringify([])
                         });
                     } else {
+                        var subCatKey = [];
+                        for (var i = 0, len = brand.subCategory.length; i < len; i++) {
+                            subCatKey.push({ name: brand.subCategory[i], category: brand.category[i]});
+                        }
+
                         brand.user = req.user;
                         brand.categories = catalog[0];
                         brand.subCategories = catalog[1];
+                        brand.subCatKey = JSON.stringify(subCatKey);
                         res.render("management/brandsUpsert", brand);
                     }
                 });
@@ -40,17 +47,27 @@ brandsController.init = function (app) {
     
     
     app.post("/management/brands/doUpsert", authSvc.checkAuth, function (req, res) {
+
+        var categories = [];
+        var subCategories = [];
+
+        for (var i = 0, len = req.body.subCategories.length; i < len; i++) {
+            var item = req.body.subCategories[i];
+            categories.push(item.category);
+            subCategories.push(item.name);
+        }
+
         var brands = new BrandModel({
             id: req.body.id,
             name: req.body.name,
-            category: req.body.categories,
-            subCategory: req.body.subCategories
+            category: categories,
+            subCategory: subCategories
         });
         
         if (!req.body.id) {
             brands.save(function (err, brandSaved) {
                 if (err) {
-                    res.json({ success: false, msg: 'No fue posible guardar la información' });
+                    res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una subcategoría con el mismo nombre.' });
                 } else {
                     res.json({ success: true });
                 }
@@ -60,7 +77,7 @@ brandsController.init = function (app) {
             delete brands._id;
             BrandModel.update({ _id: req.body.id }, brands, { upsert: true }, function (err) {
                 if (err) {
-                    res.json({ success: false, msg: 'No fue posible guardar la información' });
+                    res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una subcategoría con el mismo nombre.' });
                 } else {
                     res.json({ success: true });
                 }

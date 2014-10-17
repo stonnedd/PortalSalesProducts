@@ -14,26 +14,47 @@
         $http.post(urlToGo, $scope.m)
             .then($scope.onSuccess, $scope.onError);
     };
-    
-    $scope.singleSelection = function singleSelection($scope) {
-        $scope.value = true ;
-    }
 
-    $scope.toggleSelection = function toggleSelection(itemSel, key) {
+    $scope.singleSelection = function singleSelection() {
+        $scope.value = true;
+    };
 
+    $scope.toggleSelection = function (itemSel, key) {
+        
         if (!$scope.m[key]) {
             $scope.m[key] = [];
         }
-
+        
         var idx = $scope.m[key].indexOf(itemSel);
         
         if (idx > -1) {
             $scope.m[key].splice(idx, 1);
         }
-
         else {
             $scope.m[key].push(itemSel);
         }
+        
+        if (!$scope.m[key]) {
+            $scope.m[key] = '';
+        }
+        console.log($scope.m[key]);
+    };
+    
+    $scope.toggleSelectionMultiple = function(itemSel, key) {
+        
+        if (!$scope.m[key]) {
+            $scope.m[key] = [];
+        }
+        
+        var idx = $scope.indexOf(itemSel, $scope.m[key]);
+        
+        if (idx > -1) {
+            $scope.m[key].splice(idx, 1);
+        }
+        else {
+            $scope.m[key].push(itemSel);
+        }
+        
         if (!$scope.m[key]) {
             $scope.m[key] = '';
         }
@@ -99,6 +120,56 @@
             }
         }
         $scope.m[key] = list[0];
+        return;
+    };
+
+    $scope.indexOf = function(value, list) {
+        for (var i = 0, len = list.length; i < len; i++) {
+            var bMatch = true;
+            var item = list[i];
+            for (var k in value) {
+                if (!item[k] || !value[k] || value[k] !== item[k]) {
+                    bMatch = false;
+                    break;
+                }
+            }
+
+            if (bMatch) {
+                return i;
+            }
+        }
+        return -1;
+    };
+    
+    
+    $scope.initCheckBox = function (list, key, value) {
+        $scope.m[key] = [];
+        if (value && value.length > 0) {
+            for (var i = 0, len = list.length; i < len; i++) {
+                var item = list[i];
+                for (var j = value.length - 1; j >= 0; j--) {
+                    var itValue = value[j];
+                    var bMatch = true;
+                    for (var k in item) {
+                        if (!item[k] || !itValue[k] || itValue[k] !== item[k]){
+                            bMatch = false;
+                            break;
+                        }
+                    }
+
+                    if (bMatch) {
+                        $scope.m[key].push(item);
+                        value.splice(j, 1);
+                        break;
+                    }
+                }
+
+                //if (item.name == value) {
+                //    $scope.m[key] = item;
+                //    return;
+                //}
+            }
+        }
         return;
     };
     
