@@ -38,6 +38,17 @@ catalogService.getCatalogs = function (param, next) {
                 callback(null, brands);
             }
         }); 
+    },
+    
+    function (callback) {
+        categoryModel.findOne({name: param }).select( { _id:0, imgPath: 1 }).sort({ position: 1 }).exec(function (err, image) {
+            if (err) {
+                callback(err);
+            }
+            else {
+                callback(null, image);
+            }
+        });
     }], next);
 };
 

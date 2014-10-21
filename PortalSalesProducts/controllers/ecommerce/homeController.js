@@ -12,29 +12,6 @@ var homeController = {};
 
 homeController.init = function (app) {
     
-    app.get("/", function (req, res) {
-        salesService.getMenuInfo(function (err, result) {
-            res.render("ecommerce/index", {
-                title: "The hhd", 
-                error: err, 
-                categories: result[0],
-                banners: result[1]
-            });
-        });
-    });
-    
-    app.get("/index", function (req, res) {
-        salesService.getMenuInfo(function (err, result) {
-            res.render("ecommerce/index", {
-                title: "The hhd", 
-                error: err, 
-                categories: result[0],
-                banners: result[1]
-                
-            });
-        });
-    });
-    
     app.get('/outlet', function (req, res) {
         req.params.page = req.query.page;
         outletSvc.getCatalogs(req.params,function (err, catalog) {
@@ -68,8 +45,9 @@ homeController.init = function (app) {
                 categories: catalog[0],
                 subCategories: catalog[1],
                 brands: catalog[2],
-                title: req.params.category
-            });
+                title: req.params.category,
+                catImage: catalog[3].imgPath
+        });
         })
     })
     
@@ -130,6 +108,26 @@ homeController.init = function (app) {
             }
         })
     })
+    
+    app.get("/", function (req, res) {
+        salesService.getMenuInfo(function (err, result) {
+            res.render("ecommerce/index", {
+                error: err, 
+                categories: result[0],
+                banners: result[1]
+            });
+        });
+    });
+    
+    app.get("/index", function (req, res) {
+        salesService.getMenuInfo(function (err, result) {
+            res.render("ecommerce/index", {
+                error: err, 
+                categories: result[0],
+                banners: result[1]
+            });
+        });
+    });
 
 };
 module.exports = homeController;

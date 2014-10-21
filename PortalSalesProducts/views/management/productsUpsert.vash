@@ -238,14 +238,14 @@
                                                 Descripción:
                                             </div>
                                             <div class="col-xs-7 element-left">
-                                                <input class="form-control" data-val="true"
+                                                <textarea rows="4" class="form-control" data-val="true"
                                                        data-val-length="No puede exceder de 400 caracteres"
                                                        data-val-length-max="400" data-val-length-min="1"
                                                        data-val-required="Descripción es un campo requerido"
                                                        id="description" name="description"
-                                                       type="text" ng-model="m.description"
-                                                       ng-init="m.description = '@model.description'" />
-
+                                                       ng-model="m.description"
+                                                       ng-init="m.description = '@model.description'" >
+                                                </textarea>
                                             </div>
                                             <div class="col-xs-9 col-xs-offset-3">
                                                 <span class="field-validation-valid" data-valmsg-for="description"

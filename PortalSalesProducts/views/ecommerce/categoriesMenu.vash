@@ -3,17 +3,17 @@
 <link href="/css/blurMenu.css" rel="stylesheet">
     })
     @html.block("body", function(model){
-
-    <div class="heads" style="background: url(/images/titleBackground7.png) center center;">
+    <div ng-init='catImage = "@model.catImage"'>
+    <div class="heads" style="background: url(/images/category/{{catImage}}) center center;">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h2><span style="text-shadow: 2px 2px 4px #fff;" >@model.title</span></h2>
+                    <h2><span style="text-shadow: 2px 2px 4px #fff;">@model.title</span></h2>
                 </div>
             </div>
         </div>
     </div>
-
+</div>
     <div>
         @if(model.title!='Outlet'){
         <ul class="BlurMenu">

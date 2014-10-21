@@ -260,6 +260,7 @@
     <Folder Include="models\account\" />
     <Folder Include="infrastructure\" />
     <Folder Include="public\images\banners\" />
+    <Folder Include="public\images\category\" />
     <Folder Include="utils\" />
     <Folder Include="public\css\jqgrid\" />
     <Folder Include="public\css\ace\" />

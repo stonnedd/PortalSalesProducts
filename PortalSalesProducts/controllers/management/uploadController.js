@@ -19,6 +19,9 @@ uploadController.init = function (app, dirname) {
                 case "2":
                     pathExtension = '/products';
                     break;
+                case "3":
+                    pathExtension = '/category';
+                    break;
                 case "4":
                     pathExtension = '/banners';
                     break;                

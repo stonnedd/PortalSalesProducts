@@ -39,8 +39,12 @@ if ('development' == app.get('env')) {
 ctrlEcommerce.init(app);
 svcDatabase.init(app);
 ctrlManagement.init(app,__dirname);
-
 //svcAuth.registerAdmin();
+
+app.use(function(req, res) {
+    res.redirect("/");
+});
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

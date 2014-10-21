@@ -12,7 +12,7 @@ categoriesController.init = function (app) {
     });
     
     app.post("/management/categories/list", authSvc.checkAuth, function (req, res) {
-        var toSelect = { _id: 1, name: 1, description: 1, uploadDate: 1, position: 1 };
+        var toSelect = { _id: 1, name: 1, description: 1, uploadDate: 1, position: 1, imgPath:1};
         jqgridUtil.doQuery(req, res, CategoryModel, toSelect);
     });
     
@@ -22,6 +22,8 @@ categoriesController.init = function (app) {
                 res.render("management/categoriesUpsert", { user: req.user });
             } else {
                 category.user = req.user;
+                category.image = category.imgPath;
+                category.imgPath = "/images/category/" + category.imgPath;  
                 res.render("management/categoriesUpsert", category);
             }
         });
@@ -33,7 +35,8 @@ categoriesController.init = function (app) {
             id: req.body.id,
             name: req.body.name,
             position: req.body.position,
-            description: req.body.description
+            description: req.body.description,
+            imgPath: req.body.image
         });
         
         if (!req.body.id) {

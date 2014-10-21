@@ -65,6 +65,8 @@ productsController.init = function (app) {
                         product.categories = catalog[0];
                         product.subCategories = catalog[1];
                         product.brands = catalog[2];
+                        product.image = subCategory.imgPath;
+                        product.imgPath = "/images/products/" + subCategory.imgPath;  
                         res.render("management/productsUpsert", product);
                     }
                 });

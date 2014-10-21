@@ -1,5 +1,6 @@
 ﻿@html.extend("/shared/layoutUpload", function(model){
     @html.block("scripts", function(model){
+
     })
     @html.block("body", function(model){
 <div ng-controller="upsertController" ng-cloak class="panel-login" style="width: 1000px !important;">
@@ -72,7 +73,7 @@
                                             <br />
                                             <br />
                                             <div class="col-xs-10 col-xs-offset-1 element-center">
-                                                <img src="{{m.image}}"
+                                                <img ng-src="{{m.image}}"
                                                      ng-model="m.image"
                                                      ng-init="m.image = '@(model.imgPath ? model.imgPath :'/images/emptyImg.png')'"
                                                      width="200" height="200" />

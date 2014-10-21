@@ -1,4 +1,4 @@
-﻿@html.extend("/shared/layoutAccount", function(model){
+﻿@html.extend("/shared/layoutUpload", function(model){
     @html.block("scripts", function(model){
     })
     @html.block("body", function(model){
@@ -80,9 +80,31 @@
                                                 <span class="field-validation-valid" data-valmsg-for="description"
                                                       data-valmsg-replace="true"></span>
                                             </div>
+
+
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="col-xs-10 col-xs-offset-1 ">
+                                        <div class="col-xs-12 element-center" ng-init="m.image= '@(model.image ? model.image :'')';">
+                                            Agregar imagen:
+                                        </div>
+                                        <div class="col-xs-10 col-xs-offset-1 element-center" ng-controller="UploadCtrl">
+                                            <upload-button class="btn btn-primary btn-upload"
+                                                           url="/upload" data="upType" ng-init="upType={upType:'3'};"
+                                                           on-success="onGlobalSuccess(response)">
+                                                Subir archivo
+                                            </upload-button>
+                                            <br />
+                                            <br />
+                                            <div class="col-xs-10 col-xs-offset-1 element-center">
+                                                <img ng-src="{{m.image}}"
+                                                     ng-model="m.image"
+                                                     ng-init="m.image = '@(model.imgPath ? model.imgPath :'/images/emptyImg.png')'"
+                                                     width="384" height="240" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                 </div>
                             </div>
                         </div>
                     </div>
