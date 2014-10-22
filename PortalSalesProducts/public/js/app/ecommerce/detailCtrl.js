@@ -22,7 +22,8 @@
             fullname: $scope.fullname,
             email: $scope.email,
             quantity: $scope.quantity,
-            cbfee:$scope.cbfee
+            cbfee: $scope.cbfee,
+            
         }).then($scope.onSuccess, $scope.onError);
     }
     

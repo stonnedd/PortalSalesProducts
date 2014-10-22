@@ -27,7 +27,14 @@ subCategoryUpdateService.updateObjects = function (lastName, newName, next) {
                                 subCat.subCategory[i] = newName;
                             }
                     }
-                    brandModel.update({_id:subCat.id},{subCategory: subCat.subCategory });
+                    brandModel.update({_id:subCat.id},{subCategory: subCat.subCategory }, { multi: true },
+                    function (err, count, status) {
+                        if (!err) {
+                            next(null, count, status)
+                        } else {
+                            next(err)
+                        }
+                    });
                 }   
             } else {
                 next(err);

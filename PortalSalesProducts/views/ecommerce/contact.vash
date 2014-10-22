@@ -68,13 +68,16 @@
 
 
         <div class="alert-info" style="text-center">
-            
             <h2>Dudas o aclaraciones</h2>
-            <h5>Correo: vandalosk8@gmail.com</h5>
-            <h5>Tel: (015) 5077 3688 ​</h5>
-            <h2>Whats app</h2>
-            <h5>Tel: (015) 5077 3688 ​</h5>
-
+            <dl class="dl-horizontal">
+                <dt>Correo electrónico:</dt>
+                <dd>vandalosk8@gmail.com</dd>
+                <dt>Teléfono:</dt>
+                <dd>(015) 5077 3688</dd>
+                <dt>What's app</dt>
+                <dd>55 4067 1356</dd>
+            </dl>
+            <br />
         </div>
 
         <div>
@@ -86,12 +89,12 @@
         <div class="page-content contact">
             <div class="row padd20-top-btm">
                 <div class="col-md-5 col-sm-5">
-                    <textarea class="text-center fa-font" rows="13" cols="75">
-                        Vandalos Skate - Atizapán -
-                        Calz. San Mateo # 8, Atizapn Centro
-                        Estado de México, Cp. 52940.
-                        Tel: (015) 5077 3688
-                    </textarea>
+                    <address class="text-center">
+                        <strong> Skate - Atizapán </strong><br />
+                        Calz. San Mateo # 8, Atizapn Centro<br />
+                        Estado de México, Cp. 52940.<br />
+                        Tel: (015) 5077 3688<br />
+                    </address>
                 </div>
                 <div class="col-md-7 col-sm-7" id="map_canvas1" style="height: 300px;">
                 </div>
@@ -108,13 +111,13 @@
         <div class="page-content contact">
             <div class="row padd20-top-btm">
                 <div class="col-md-5 col-sm-5">
-                    <textarea class="text-center fa-font" rows="13" cols="75">
-                        Vandalos Skate - Tlalnepantla -
-                        Priv. porfirio diaz #8
-                        Tlalnepantla Centro
-                        Estado de México​, Cp. 54000
-                        Tel (015) 2451 9038
-                    </textarea>
+                    <address class="text-center">
+                        <strong>Skate - Tlalnepantla </strong> <br/>
+                        Priv. porfirio diaz #8<br />
+                        Tlalnepantla Centro<br />
+                        Estado de México​, Cp. 54000<br />
+                        Tel (015) 2451 9038<br />
+                    </address>
                 </div>
                 <div class="col-md-7 col-sm-7" id="map_canvas2" style="height: 300px;">
                 </div>

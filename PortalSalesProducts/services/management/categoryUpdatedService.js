@@ -31,17 +31,24 @@ categoryUpdateService.updateObjects = function(lastName, newName, next) {
         },
         
         function (callback) {
-        brandModel.update({ category: lastName }, { category: newName }, { multi: true },
-                function (err, count, status) {
+        brandModel.find({ category: lastName }).select({ _id: 1, category: 1 }).exec(function (err, brands) {
             if (!err) {
-                next(null, count, status)
+                for (var j = 0; j < brands.length; j++) {
+                    var brand = brands[j];
+                    for (var i = 0; i < brand.category.length; i++) {
+                        if (brand.category[i] === lastName) {
+                            brand.category[i] = newName;
+                        }
+                    }
+                    brandModel.update({ _id: brand.id }, { category: brand.category }, function (err, count, s) {
+                        console.log(err);
+                    });
+                }
             } else {
-                next(err)
+                next(err);
             }
         });
-    }        
-
-    ], next);
+    }], next);
 
 };
 module.exports = categoryUpdateService;

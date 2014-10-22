@@ -88,56 +88,48 @@
                                             Color: {{product.color}}&nbsp&nbsp&nbsp&nbsp
                                         </h3>
                                         <br />
+                                        
+                                        <div class="input-group">
+                                            <span class="input-group-addon">#</span>
+                                            <input ng-init="quantity=1;" ng-model="quantity" class="form-control-static" type="number"
+                                                   min="1" max={{product.quantity}} data-val="true" style="text-align:center"
+                                                   data-val-required="Por favor seleccione una cantidad"
+                                                   id="quantity" name="quantity">
+                                        </div>
 
-                                        Seleccione la cantidad:
-                                        <input ng-init="quantity=1;" ng-model="quantity" class="form-control-static" type="number"
-                                               min="1" max={{product.quantity}} data-val="true" style="text-align:center"
-                                               data-val-required="Por favor seleccione una cantidad"
-                                               id="quantity" name="quantity">
                                         <div class="col-xs-9 col-xs-offset-3">
                                             <span class="field-validation-valid" data-valmsg-for="quantity"
-                                                  data-valmsg-replace="true"></span>
+                                                    data-valmsg-replace="true"></span>
                                         </div>
-                                        <br/>
+
                                         <h3 class="panel-success" style="text-align:right; font-weight:bolder">Subtotal: &nbsp;&nbsp;$ {{product.price*quantity}}</h3>
+                                        Seleccione medio de envío:
                                         <br />
-                                        Seleccione envío:
-                                        <br/>
-                                            
-                                        <table class="tg" ng-init="fee1=50.00; fee2=100.00; fee3=150.00; cbfee=fee1;">
+                                        <table class="tg" ng-init="fee1=160.00; fee2=80.00; cbfee=fee1;">
                                             <tr>
-                                                <td class="tg-031e">metodo de pago uno &nbsp;&nbsp;&nbsp;&nbsp;</td><td>${{fee1}}</td>
+                                                <td class="tg-031e">FedEx : &nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                <td>${{fee1}}</td>
                                                 <td class="tg-031e">
                                                     &nbsp;&nbsp;<input type="radio" name="shippingMetod" value="{{fee1}}"
-                                                                       ng-model="cbfee" data-val="true"
-                                                                       data-val-required="Por favor seleccione un método de envío" />
+                                                                        ng-model="cbfee" data-val="true"
+                                                                        data-val-required="Por favor seleccione un método de envío" />
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td class="tg-031e">metodo de pago dos&nbsp;&nbsp;&nbsp;&nbsp;</td><td>${{fee2}}</td>
+                                                <td class="tg-031e">MexPost :&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                                <td>${{fee2}}</td>
                                                 <td class="tg-031e">
                                                     &nbsp;&nbsp;<input type="radio" name="shippingMetod" value="{{fee2}}"
-                                                                       ng-model="cbfee" data-val="true"
-                                                                       data-val-required="Por favor seleccione un método de envío" />
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td class="tg-031e">metodo de pago tres&nbsp;&nbsp;&nbsp;&nbsp;</td><td>${{fee3}}</td>
-                                                <td class="tg-031e">
-                                                    &nbsp;&nbsp;<input type="radio" name="shippingMetod" value="{{fee3}}"
-                                                                       ng-model="cbfee" data-val="true"
-                                                                       data-val-required="Por favor seleccione un método de envío" />
+                                                                        ng-model="cbfee" data-val="true"
+                                                                        data-val-required="Por favor seleccione un método de envío" />
                                                 </td>
                                             </tr>
                                         </table>
                                         <div class="col-xs-9 col-xs-offset-3">
                                             <span class="field-validation-valid" data-valmsg-for="shippingMetod"
-                                                  data-valmsg-replace="true"></span>
+                                                    data-valmsg-replace="true"></span>
                                         </div>
-
-                                        <br />
-                                        <h2 class="panel-success" style="text-align:right; font-weight:bolder" >Total: &nbsp;&nbsp;$ {{product.price*quantity + 1*cbfee}}</h2>
-
+                                        <h2 class="panel-success" style="text-align:right; font-weight:bolder">Total: &nbsp;&nbsp;$ {{product.price*quantity + 1*cbfee}}</h2>
                                     </div>
                                 </div>
 

@@ -84,6 +84,7 @@
     <Compile Include="services\ecommerce\outletService.js" />
     <Compile Include="services\ecommerce\productService.js" />
     <Compile Include="services\ecommerce\tenisService.js" />
+    <Compile Include="services\management\brandUpdatedService.js" />
     <Compile Include="services\management\categoryService.js" />
     <Compile Include="services\ecommerce\catalogService.js" />
     <Compile Include="services\management\catalogService.js" />

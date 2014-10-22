@@ -2,6 +2,8 @@
 var BrandModel = require("../../models/ecommerce/brandModel.js");
 var jqgridUtil = require("../../infrastructure/jqgrid/jqgridUtil.js");
 var CatalogSvc = require("../../services/management/catalogService.js");
+var brandUpdateSvc = require("../../services/management/brandUpdatedService.js");
+
 var brandsController = {};
 
 brandsController.init = function (app) {
@@ -57,7 +59,7 @@ brandsController.init = function (app) {
             subCategories.push(item.name);
         }
 
-        var brands = new BrandModel({
+        var brandNew = new BrandModel({
             id: req.body.id,
             name: req.body.name,
             category: categories,
@@ -73,13 +75,30 @@ brandsController.init = function (app) {
                 }
             });
         } else {
-            brands = brands.toObject();
-            delete brands._id;
-            BrandModel.update({ _id: req.body.id }, brands, { upsert: true }, function (err) {
-                if (err) {
-                    res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una subcategoría con el mismo nombre.' });
+            BrandModel.findOne({ _id: req.body.id }, { _id: 0, name: 1 }, function (err, brandOld) {
+                if (err || !brandOld) {
+                    res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una marca con el mismo nombre.' });
+                    
                 } else {
-                    res.json({ success: true });
+                    brandNew = brandNew.toObject();
+                    delete brandNew._id;
+                    BrandModel.update({ _id: req.body.id }, brandNew, { upsert: true }, function (err) {
+                        if (err) {
+                            res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una marca con el mismo nombre.' });
+                        } else {
+                            if (brandOld.name !== brandNew.name) {
+                                brandUpdateSvc.updateObjects(brandOld.name, req.body.name, function (err) {
+                                    if (err) {
+                                        res.json({ success: false, msg: 'No fue posible actulizar la información de la marca. Revise que no haya ingresado una marca con el mismo nombre.' });
+                                    } else {
+                                        res.json({ success: true });
+                                    }
+                                });
+                            } else {
+                                res.json({ success: true });
+                            }
+                        }
+                    });
                 }
             });
         }

@@ -40,6 +40,7 @@
                 <ul class="nav navbar-nav nav-right">
                     <li><a href="/outlet">OUTLET</a></li>
                     <li><a href="/contact">Contacto</a></li>
+                    <li><a rel="tooltip" title="55 4067 1356" href="/contact" class="social-icon"> <img src="/images/whatsappLogo.png" alt="55 4067 135" width="25"></a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -57,6 +58,7 @@
                             <li><a href="https://twitter.com/vandalosk8" rel="tooltip" title="Twitter" class="icon-twitter"><span><i class="fa fa-twitter"></i></span></a></li>
                             <li><a href="https://plus.google.com/u/0/+vandalosskateboardTlalnepantla/posts" rel="tooltip" title="google +" class="icon-gplus"><span><i class="fa fa-google-plus"></i></span></a></li>
                             <li><a href="#" rel="tooltip" title="Instagram" class="icon-instagram"><span><i class="fa fa-instagram"></i></span></a></li>
+
                         </ul>
                         <div class="sitemap">
                             <ul>
