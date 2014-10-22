@@ -80,7 +80,7 @@ homeController.init = function (app) {
                 totalPage: parseInt(catalog[1].total / catalog[1].rows + (catalog[1].total % catalog[1].rows === 0 ? 0 : 1)),
                 rows: catalog[1].rows,
                 brands: catalog[2],
-                title: req.params.category + '- - ' + '- -' + req.params.brand,
+                title: req.params.category + '| ' + '|' + req.params.brand,
                 category: req.params.category
             });
         })

@@ -88,7 +88,9 @@
     <Compile Include="services\ecommerce\catalogService.js" />
     <Compile Include="services\management\catalogService.js" />
     <Compile Include="services\ecommerce\detailService.js" />
+    <Compile Include="services\management\categoryUpdatedService.js" />
     <Compile Include="services\management\subCategoryService.js" />
+    <Compile Include="services\management\subCategoryUpdatedService.js" />
     <Compile Include="utils\uuid.js" />
     <Content Include="public\css\alertify.bootstrap.css" />
     <Content Include="public\css\alertify.core.css" />

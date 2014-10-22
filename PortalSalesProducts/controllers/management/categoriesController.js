@@ -1,6 +1,7 @@
 ﻿var authSvc = require("../../services/account/auth.js");
 var CategoryModel = require("../../models/ecommerce/CategoryModel.js");
 var jqgridUtil = require("../../infrastructure/jqgrid/jqgridUtil.js");
+var categoryUpdateSvc = require("../../services/management/categoryUpdatedService.js");
 
 //
 var categoriesController = {};
@@ -12,7 +13,7 @@ categoriesController.init = function (app) {
     });
     
     app.post("/management/categories/list", authSvc.checkAuth, function (req, res) {
-        var toSelect = { _id: 1, name: 1, description: 1, uploadDate: 1, position: 1, imgPath:1};
+        var toSelect = { _id: 1, name: 1, description: 1, uploadDate: 1, position: 1, imgPath: 1 };
         jqgridUtil.doQuery(req, res, CategoryModel, toSelect);
     });
     
@@ -23,7 +24,7 @@ categoriesController.init = function (app) {
             } else {
                 category.user = req.user;
                 category.image = category.imgPath;
-                category.imgPath = "/images/category/" + category.imgPath;  
+                category.imgPath = "/images/category/" + category.imgPath;
                 res.render("management/categoriesUpsert", category);
             }
         });
@@ -31,7 +32,8 @@ categoriesController.init = function (app) {
     
     
     app.post("/management/categories/doUpsert", authSvc.checkAuth, function (req, res) {
-        var category = new CategoryModel({
+        
+        var categoryNew = new CategoryModel({
             id: req.body.id,
             name: req.body.name,
             position: req.body.position,
@@ -40,21 +42,40 @@ categoriesController.init = function (app) {
         });
         
         if (!req.body.id) {
-            category.save(function (err, categorySaved) {
+            categoryNew.save(function (err, categorySaved) {
                 if (err) {
-                    res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una subcategoría con el mismo nombre.' });
+                    res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una categoría con el mismo nombre.' });
                 } else {
+                    
                     res.json({ success: true });
                 }
             });
         } else {
-            category = category.toObject();
-            delete category._id;
-            CategoryModel.update({ _id: req.body.id }, category, { upsert: true }, function (err) {
-                if (err) {
-                    res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una subcategoría con el mismo nombre.' });
+            
+            CategoryModel.findOne({ _id: req.body.id }, { _id: 0, name: 1 }, function (err, categoryOld) {
+                if (err || !categoryOld) {
+                    res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una categoría con el mismo nombre.' });
+                    
                 } else {
-                    res.json({ success: true });
+                    categoryNew = categoryNew.toObject();
+                    delete categoryNew._id;
+                    CategoryModel.update({ _id: req.body.id }, categoryNew, { upsert: true }, function (err) {
+                        if (err) {
+                            res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una subcategoría con el mismo nombre.' });
+                        } else {
+                            if (categoryOld.name !== categoryNew.name) {
+                                categoryUpdateSvc.updateObjects(categoryOld.name, req.body.name, function(err) {
+                                    if (err) {
+                                        res.json({ success: false, msg: 'No fue posible actulizar la información de los productos. Revise que no haya ingresado una subcategoría con el mismo nombre.' });
+                                    } else {
+                                        res.json({ success: true });
+                                    }
+                                });
+                            } else {
+                                res.json({ success: true });
+                            }
+                        }
+                    });
                 }
             });
         }
@@ -65,10 +86,6 @@ categoriesController.init = function (app) {
         if (!req.body.id) {
             res.json({ success: false, msg: 'No se encontró la categoría para eliminar' });
         }
-        
-        //TODO
-        //Revisar que en las otras colecciones no existe la categforía
-        
         CategoryModel.findOneAndRemove({ _id: req.body.id }, function (err) {
             if (err) {
                 res.json({ success: false, msg: 'No fue posible eliminar la categoría.' });

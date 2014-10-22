@@ -1,12 +1,14 @@
 ﻿var authSvc = require("../../services/account/auth.js");
-var SubCategoryModel = require("../../models/ecommerce/subCategoryModel.js");
+var subCategoryModel = require("../../models/ecommerce/subCategoryModel.js");
 var jqgridUtil = require("../../infrastructure/jqgrid/jqgridUtil.js");
 var CatalogSvc = require("../../services/management/catalogService.js");
 var uploadCtrl = require("../../controllers/management/uploadController.js");
+var subCategoryUpdateSvc = require("../../services/management/subCategoryUpdatedService.js");
+
 var subCategoriesController = {};
 
 
-subCategoriesController.init = function (app,categories) {
+subCategoriesController.init = function (app, categories) {
     
     app.get("/management/subCategories", authSvc.checkAuth, function (req, res) {
         res.render("management/subCategories", { user: req.user });
@@ -14,7 +16,7 @@ subCategoriesController.init = function (app,categories) {
     
     app.post("/management/subCategories/list", authSvc.checkAuth, function (req, res) {
         var toSelect = { _id: 1, name: 1, category: 1, imgPath: 1, uploadDate: 1 };
-        jqgridUtil.doQuery(req, res, SubCategoryModel, toSelect);
+        jqgridUtil.doQuery(req, res, subCategoryModel, toSelect);
     });
     
     app.get("/management/subCategories/upsert", authSvc.checkAuth, function (req, res) {
@@ -23,7 +25,7 @@ subCategoriesController.init = function (app,categories) {
             if (err) {
                 res.json({ msg: "No hay datos en el sistema" });
             } else {
-                SubCategoryModel.findOne({ _id: req.query.id }, function (err2, subCategory) {
+                subCategoryModel.findOne({ _id: req.query.id }, function (err2, subCategory) {
                     if (err2 || !subCategory) {
                         
                         res.render("management/subCategoriesUpsert", { user: req.user, categories: result[0] });
@@ -32,10 +34,10 @@ subCategoriesController.init = function (app,categories) {
                         subCategory.user = req.user;
                         subCategory.categories = result[0];
                         subCategory.image = subCategory.imgPath;
-                        subCategory.imgPath = "/images/subCategory/" + subCategory.imgPath;  
+                        subCategory.imgPath = "/images/subCategory/" + subCategory.imgPath;
                         res.render("management/subCategoriesUpsert", subCategory);
                     }
-                });            
+                });
             }
         });
     });
@@ -43,7 +45,7 @@ subCategoriesController.init = function (app,categories) {
     
     app.post("/management/subcategories/doUpsert", authSvc.checkAuth, function (req, res) {
         
-        var subCategory = new SubCategoryModel({
+        var subCategoryNew = new subCategoryModel({
             id: req.body.id,
             name: req.body.name,
             category: req.body.category.name,
@@ -52,7 +54,7 @@ subCategoriesController.init = function (app,categories) {
         });
         
         if (!req.body.id) {
-            subCategory.save(function (err, subCategorySaved) {
+            subCategoryNew.save(function (err, subCategorySaved) {
                 if (err) {
                     res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una subcategoría con el mismo nombre.' });
                 } else {
@@ -60,17 +62,34 @@ subCategoriesController.init = function (app,categories) {
                 }
             });
         } else {
-            subCategory = subCategory.toObject();
-            delete subCategory._id;
-            SubCategoryModel.update({ _id: req.body.id }, subCategory, { upsert: true }, function (err) {
-                if (err) {
-                    res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una subcategoría con el mismo nombre.' });
+            subCategoryModel.findOne({ _id: req.body.id }, { _id: 0, name: 1 }, function (err, subCategoryOld) {
+                if (err || !subCategoryOld) {
+                    res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una categoría con el mismo nombre.' });
                 } else {
-                    res.json({ success: true });
+                    subCategoryNew = subCategoryNew.toObject();
+                    delete subCategoryNew._id;
+                    subCategoryModel.update({ _id: req.body.id }, subCategoryNew, { upsert: true }, function (err) {
+                        if (err) {
+                            res.json({ success: false, msg: 'No fue posible guardar la información. Revise que no haya ingresado una subcategoría con el mismo nombre.' });
+                        } else {
+                            if (subCategoryOld.name !== subCategoryNew.name) {
+                                subCategoryUpdateSvc.updateObjects(subCategoryOld.name, req.body.name, function (err) {
+                                    if (err) {
+                                        res.json({ success: false, msg: 'No fue posible actulizar la información. Revise que no haya ingresado un con el mismo nombre.' });
+                                    } else {
+                                        res.json({ success: true });
+                                    }
+                                });
+                            } else {
+                                res.json({ success: true });
+                            }
+                        }
+                    });
                 }
             });
         }
     });
+    
     
     
     app.post("/management/subcategories/delete", authSvc.checkAuth, function (req, res) {
@@ -81,7 +100,7 @@ subCategoriesController.init = function (app,categories) {
         //TODO
         //Revisar que en las otras colecciones no existe la categforía
         
-        SubCategoryModel.findOneAndRemove({ _id: req.body.id }, function (err) {
+        subCategoryModel.findOneAndRemove({ _id: req.body.id }, function (err) {
             if (err) {
                 res.json({ success: false, msg: 'No fue posible eliminar la categoría.' });
             }
